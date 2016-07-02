@@ -34,7 +34,7 @@ if [ "$1" = "config" ]; then
     echo -e '\e[0;34mPor favor, ingresa tu canal sin considerar el @\e[0m'
     read channel
     sudo rm -f config.lua
-    wget https://raw.githubusercontent.com/jarriztg/QuickBot/master/config.lua
+    wget https://raw.githubusercontent.com/ridrogo/ModeradorBot/master/config.lua
     clear
     perl -pi -e "s[readapikey][$apikey]g" config.lua
     perl -pi -e "s[readowner][$id]g" config.lua
