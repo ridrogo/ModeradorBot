@@ -9,7 +9,7 @@ Clonar repositorio:
 
 ```bash
 # Clonar QuickBot
-git clone https://github.com/jarriztg/QuickBot.git
+git clone https://github.com/
 ```
 ```bash
 # Mover a directorio y cambiar permisos de arranque
@@ -60,5 +60,5 @@ Envia tus pullrequest para mejorar el código.
 
 
 --------------------
-[![https://telegram.me/jarriz](https://img.shields.io/badge/Telegram-%40Jarriz-green.svg)](https://telegram.me/jarriz)
-[![https://telegram.me/jarriz](https://img.shields.io/badge/Chat-soporte-orange.svg)](https://telegram.me/equipoQuickSilver)
+[![https://telegram.me/Webrom](https://img.shields.io/badge/Telegram-%40Jarriz-green.svg)](https://telegram.me/Webrom)
+[![https://telegram.me/Webrom](https://img.shields.io/badge/Chat-soporte-orange.svg)](https://telegram.me/equipoQuickSilver)
