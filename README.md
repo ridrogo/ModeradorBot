@@ -1,4 +1,4 @@
-QuickBot
+ModeradorBot
 -------------------------
 Bot de telegram usando API conexiones.
 
@@ -8,14 +8,14 @@ Más información en la [API de Telegram](https://core.telegram.org/bots/api).
 Clonar repositorio:
 
 ```bash
-# Clonar QuickBot
+# Clonar ModeradorBot
 git clone https://github.com/ridrogo/ModeradorBot.git
 ```
 ```bash
 # Mover a directorio y cambiar permisos de arranque
-cd QuickBot && chmod +x run.sh
+cd ModeradorBot && chmod +x run.sh
 ```
-Instalar QuickBot: 
+Instalar ModeradorBot: 
 
 ```bash
 ./run.sh install
@@ -37,10 +37,10 @@ Más funciones del bash:
 # Volver a iniciar una sesión normal
 ./run.sh
 
-# Arrancar QuickBot en screen, siempre arrancando
+# Arrancar ModeradorBot en screen, siempre arrancando
 ./run.sh kp
 
-# Detener última sesión de QuickBot en screen
+# Detener última sesión de ModeradorBot en screen
 ./run.sh kill
 
 # Borrar logs por consola
@@ -60,5 +60,4 @@ Envia tus pullrequest para mejorar el código.
 
 
 --------------------
-[![https://telegram.me/Webrom](https://telegram.me/Webrom)
-
+https://telegram.me/Webrom
