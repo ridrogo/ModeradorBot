@@ -3,17 +3,17 @@ local function make_keyboard(mod, mod_current_position)
 	keyboard.inline_keyboard = {}
 	if mod then --extra options for the mod
 	    local list = {
-	        ['Banhammer'] = '!banhammer',
-	        ['Group info'] = '!info',
-	        ['Flood manager'] = '!flood',
+	        ['Adm. de Baneos'] = '!banhammer',
+	        ['Info. del Grupo'] = '!info',
+	        ['Adm. de Flood'] = '!flood',
 	        ['Media settings'] = '!media',
-	        ['Welcome settings'] = '!welcome',
-	        ['General settings'] = '!settings',
-	        ['Extra commands'] = '!extra',
-	        ['Warns'] = '!warns',
-	        ['Characters strictness'] = '!char',
+	        ['Ajustes de Bienvenida'] = '!welcome',
+	        ['Ajustes Generales'] = '!settings',
+	        ['Comandos Extra'] = '!extra',
+	        ['Advertencias'] = '!warns',
+	        ['Caracteres Especiales'] = '!char',
 	        ['Links'] = '!links',
-	        ['Languages'] = '!lang'
+	        --['Languages'] = '!lang'
         }
         local line = {}
         for k,v in pairs(list) do
@@ -39,11 +39,11 @@ local function make_keyboard(mod, mod_current_position)
     end
     local bottom_bar
     if mod then
-		bottom_bar = {{text = '🔰 User commands', callback_data = '!user'}}
+		bottom_bar = {{text = '🔰 Todos los Usuarios', callback_data = '!user'}}
 	else
-	    bottom_bar = {{text = '🔰 Admin commands', callback_data = '!mod'}}
+	    bottom_bar = {{text = '🔰 Sólo Admins', callback_data = '!mod'}}
 	end
-	table.insert(bottom_bar, {text = 'Info', callback_data = '!info_button'}) --insert the "Info" button
+	table.insert(bottom_bar, {text = 'Información', callback_data = '!info_button'}) --insert the "Info" button
 	table.insert(keyboard.inline_keyboard, bottom_bar)
 	return keyboard
 end
@@ -52,9 +52,9 @@ local function do_keybaord_credits()
 	local keyboard = {}
     keyboard.inline_keyboard = {
     	{
-    		{text = 'Channel', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
-    		{text = 'GitHub', url = 'https://github.com/RememberTheAir/GroupButler'},
-    		{text = 'Rate me!', url = 'https://telegram.me/storebot?start='..bot.username},
+    		{text = 'Canal', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
+    		{text = 'GitHub', url = 'https://github.com/'},
+    	--	{text = 'Rate me!', url = 'https://telegram.me/storebot?start='..bot.username},
 		},
 		{
 		    {text = '🔙', callback_data = '!user'}
@@ -67,11 +67,11 @@ local function do_keyboard_private()
     local keyboard = {}
     keyboard.inline_keyboard = {
     	{
-    		{text = '👥 Add me to a group', url = 'https://telegram.me/'..bot.username..'?startgroup=new'},
-    		{text = '📢 Bot channel', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
+    		{text = '👥 Agregame a tu grupo', url = 'https://telegram.me/'..bot.username..'?startgroup=new'},
+    		{text = '📢 Canal del Bot', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
 	    },
 	    {
-	        {text = '📕 All the commands', callback_data = '!user'}
+	        {text = '📕 Todos los Comandos', callback_data = '!user'}
         }
     }
     return keyboard
@@ -81,7 +81,7 @@ local function do_keyboard_startme()
     local keyboard = {}
     keyboard.inline_keyboard = {
     	{
-    		{text = 'Start me', url = 'https://telegram.me/'..bot.username}
+    		{text = 'Iniciame', url = 'https://telegram.me/'..bot.username}
 	    }
     }
     return keyboard

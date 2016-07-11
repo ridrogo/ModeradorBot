@@ -170,7 +170,7 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 	--Group language
 	msg.lang = db:get('lang:'..msg.chat.id)
 	if not msg.lang then
-		msg.lang = 'en'
+		msg.lang = 'es'
 	end
 	
 	collect_stats(msg) --resolve_username support, chat stats
