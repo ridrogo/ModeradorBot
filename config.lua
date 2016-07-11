@@ -1,17 +1,17 @@
 return {
-	bot_api_key = '237883405:AAEoF0ZMJizpaceprlEniWmWOs23eZJss6c',
+	bot_api_key = '',
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
 	admin = {
-		owner = 237883405,
+		owner = ,
 		admins = {
 			[123038464] = true,
 			[180791241] = true,
-			[180628032] = true,
+			[180628032] = true
 		}
 	},
 	log_chat = -1001057801239,
-	channel = '@mod_bot_webrom', --channel username with the '@'
+	channel = '@GroupButlerEsp', --channel username with the '@'
 	help_group = 'https://telegram.me/joinchat/', --group link, not username!
 	languages = 'languages.lua',
 	plugins = {
@@ -40,7 +40,7 @@ return {
 		'sendfiles.lua',
 		'killer.lua',
 		'beta.lua',
-        'say.lua',
+        	'say.lua',
 		'italic.lua',
 		'contact.lua',
 		'talk.lua',
