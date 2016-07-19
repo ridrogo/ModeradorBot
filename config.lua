@@ -45,7 +45,9 @@ return {
 		'contact.lua',
 		'talk.lua',
 		'error.lua',
-	--	'spam.lua'
+		'saludador.lua',
+		'sera.lua'
+	--	'spam.lua' -- Este plugin es optativo, sirve para evitar el spam en tu grupo, pero no puede ser desactivado por el usuario via teclado inline (por el momento)
 	},
 	available_languages = {
 		'es',
