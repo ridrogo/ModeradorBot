@@ -1,9 +1,9 @@
 return {
-	bot_api_key = '',
+	bot_api_key = 'readapikey',
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
 	admin = {
-		owner = ,
+		owner = readowner,
 		admins = {
 			[123038464] = true,
 			[180791241] = true,
@@ -75,7 +75,7 @@ return {
 			['Rules'] = 'no',
 			['About'] = 'no',
 			['Modlist'] = 'no',
-			['Report'] = 'yes',
+			['Report'] = 'no',
 			['Welcome'] = 'no',
 			['Extra'] = 'no',
 			['Flood'] = 'no'
