@@ -155,7 +155,7 @@ return {
                     ..'`/help` : Ver este mensaje.',
 		           -- ..'\n\nSi te gusta este bot, por favor deja tu voto [aqui](https://telegram.me/storebot?start=groupbutler_bot)',
 		    private = '¡Hola *&&&1*!\n'
-                   ..'Soy Group Butler Español Bot, un _bot moderador_ para tus grupos.\n'
+                   ..'Soy Moderación Bot, un _bot moderador_ para tus grupos.\n'
                    ..'\n*¿Como puedo ayudarte?*\n'
                    ..'\nPuedo banear, expulsar, advertir a cualquier usuario que tú desees.\n'
                    ..'Solo necesito que me agregues y des administración y mi trabajo empieza!\n'
