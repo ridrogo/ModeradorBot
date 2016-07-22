@@ -1,18 +1,18 @@
 return {
-	bot_api_key = 'readapikey',
+	bot_api_key = '253183950:AAFNVzNFklR2I9M0k_mqAXMNdYoPqhHwSyk',
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
 	admin = {
-		owner = readowner,
+		owner = 253183950,
 		admins = {
 			[123038464] = true,
 			[180791241] = true,
-			[180628032] = true
+			[180628032] = true,
 		}
 	},
 	log_chat = -1001057801239,
 	channel = '@GroupButlerEsp', --channel username with the '@'
-	help_group = 'https://telegram.me/joinchat/', --group link, not username!
+	help_group = 'https://telegram.me/joinchat/CsanyT7Z5Wxk8eO_se0BCA', --group link, not username!
 	languages = 'languages.lua',
 	plugins = {
 		'onmessage.lua', --THIS HAVE TO BE THE FIRST: IF AN USER IS SPAMMING/IS BLOCKED, THE BOT WON'T GO THROUGH PLUGINS
@@ -40,19 +40,20 @@ return {
 		'sendfiles.lua',
 		'killer.lua',
 		'beta.lua',
-        	'say.lua',
+        'say.lua',
 		'italic.lua',
 		'contact.lua',
 		'talk.lua',
 		'error.lua',
 		'saludador.lua',
-		'sera.lua'
-	--	'spam.lua' -- Este plugin es optativo, sirve para evitar el spam en tu grupo, pero no puede ser desactivado por el usuario via teclado inline (por el momento)
+		'sera.lua',
+		'isbanned.lua'
+	--	'spam.lua'
 	},
 	available_languages = {
 		'es',
 		--'it',
-		'en',
+		'en'
 		--'br',
 		--'ru',
 		--'de',

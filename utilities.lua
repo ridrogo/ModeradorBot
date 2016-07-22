@@ -141,10 +141,6 @@ function is_blocked_global(id)
 	end
 end
 
-function mystat(cmd)
-	db:hincrby('commands:stats', cmd, 1)
-end	
-
 function string:trim() -- Trims whitespace from a string.
 	local s = self:gsub('^%s*(.-)%s*$', '%1')
 	return s
@@ -206,6 +202,14 @@ function string:build_text(par1, par2, par3, par4, par5)
 	return self
 end
 
+local function create_folder(name)
+	local cmd = io.popen('sudo mkdir '..name)
+    cmd:read('*all')
+    cmd = io.popen('sudo chmod -R 777 '..name)
+    cmd:read('*all')
+    cmd:close()
+end
+
 function write_file(path, text, mode)
 	if not mode then
 		mode = "w"
@@ -221,14 +225,6 @@ function write_file(path, text, mode)
 	file:write(text)
 	file:close()
 	return true
-end
-
-local function create_folder(name)
-	local cmd = io.popen('sudo mkdir '..name)
-    cmd:read('*all')
-    cmd = io.popen('sudo chmod -R 777 '..name)
-    cmd:read('*all')
-    cmd:close()
 end
 
 function save_log(action, arg1, arg2, arg3, arg4)
@@ -310,6 +306,7 @@ function res_user(username)
 end
 
 function res_user_group(username, chat_id)
+	if not username then return false end
 	username = username:lower()
 	local hash = 'bot:usernames:'..chat_id
 	local stored = db:hget(hash, username)
@@ -360,7 +357,19 @@ end
 
 function get_media_id(msg)
 	if msg.photo then
-		return msg.photo[3].file_id, 'photo'
+		if msg.photo[3] then
+			return msg.photo[3].file_id, 'photo'
+		else
+			if msg.photo[2] then
+				return msg.photo[2].file_id, 'photo'
+			else
+				if msg.photo[1] then
+					return msg.photo[1].file_id, 'photo'
+				else
+					return msg.photo.file_id, 'photo'
+				end
+			end
+		end
 	elseif msg.document then
 		return msg.document.file_id
 	elseif msg.video then
@@ -452,87 +461,6 @@ function bash(str)
     local result = cmd:read('*all')
     cmd:close()
     return result
-end
-
-function change_one_header(id)
-	voice_succ = 0
-	voice_updated = 0
-	logtxt = ''
-	logtxt = logtxt..'\n-----------------------------------------------------\nGROUP ID: '..id..'\n'
-	print('Group:', id) --first: print this, once the for is done, print logtxt
-		
-	logtxt = logtxt..'---> PORTING MODS...\n'
-	local mods = db:hgetall('bot:'..id..':mod')
-	logtxt = logtxt..migrate_table(mods, 'chat:'..id..':mod')
-		
-	logtxt = logtxt..'---> PORTING OWNER...\n'
-	local owner_id = db:hkeys('bot:'..id..':owner')
-	local owner_name = db:hvals('bot:'..id..':owner')
-	if not next(owner_id) or not next(owner_name) then
-		logtxt = logtxt..'No owner!\n'
-	else
-		logtxt = logtxt..'Owner info: '..owner_id[1]..', '..owner_name[1]..' [migration:'
-		local res = db:hset('chat:'..id..':owner', owner_id[1], owner_name[1])
-		logtxt = logtxt..give_result(res)..'\n'
-	end
-		
-	logtxt = logtxt..'---> PORTING MEDIA SETTINGS...\n'
-	local media = db:hgetall('media:'..id)
-	logtxt = logtxt..migrate_table(media, 'chat:'..id..':media')
-		
-	logtxt = logtxt..'---> PORTING ABOUT...\n'
-	local about = db:get('bot:'..id..':about')
-	if not about then
-		logtxt = logtxt..'No about!\n'
-	else
-		logtxt = logtxt..'About found! [migration:'
-		local res = db:set('chat:'..id..':about', about)
-		logtxt = logtxt..give_result(res)..']\n'
-	end
-		
-	logtxt = logtxt..'---> PORTING RULES...\n'
-	local rules = db:get('bot:'..id..':rules')
-	if not rules then
-		logtxt = logtxt..'No rules!\n'
-	else
-		logtxt = logtxt..'Rules found!  [migration:'
-		local res = db:set('chat:'..id..':rules', rules)
-		logtxt = logtxt..give_result(res)..']\n'
-	end
-		
-	logtxt = logtxt..'---> PORTING EXTRA...\n'
-	local extra = db:hgetall('extra:'..id)
-	logtxt = logtxt..migrate_table(extra, 'chat:'..id..':extra')
-	print('\n\n\n')
-	logtxt = 'Successful: '..voice_succ..'\nUpdated: '..voice_updated..'\n\n'..logtxt
-	print(logtxt)
-	local log_path = "./logs/changehashes"..id..".txt"
-	file = io.open(log_path, "w")
-	file:write(logtxt)
-    file:close()
-	api.sendDocument(config.admin.owner, log_path)
-end
-
-function change_extra_header(id)
-	voice_succ = 0
-	voice_updated = 0
-	logtxt = ''
-	logtxt = logtxt..'\n-----------------------------------------------------\nGROUP ID: '..id..'\n'
-	print('Group:', id) --first: print this, once the for is done, print logtxt
-		
-	logtxt = logtxt..'---> PORTING EXTRA...\n'
-	local extra = db:hgetall('extra:'..id)
-	logtxt = logtxt..migrate_table(extra, 'chat:'..id..':extra')
-	
-	print('\n\n\n')
-	
-	logtxt = 'Successful: '..voice_succ..'\nUpdated: '..voice_updated..'\n\n'..logtxt
-	print(logtxt)
-	local log_path = "./logs/changehashesEXTRA"..id..".txt"
-	file = io.open(log_path, "w")
-	file:write(logtxt)
-    file:close()
-	api.sendDocument(config.admin.owner, log_path)
 end
 
 function download_to_file(url, file_path)--https://github.com/yagop/telegram-bot/blob/master/bot/utils.lua
@@ -830,6 +758,8 @@ local function remGroup(chat_id, full)
 		db:del('chat:'..chat_id..':'..set)
 	end
 	
+	db:del('chat:'..chat_id..'links')
+	
 	if full then
 		for i, set in pairs(config.chat_custom_texts) do
 			db:del('chat:'..chat_id..':'..set)
@@ -1065,7 +995,8 @@ local cross = {
 	remBanList = remBanList,
 	getUserStatus = getUserStatus,
 	saveBan = saveBan,
-	is_info_message_key = is_info_message_key
+	is_info_message_key = is_info_message_key,
+	table2keyboard = table2keyboard
 }
 
 local rdb = {

@@ -582,18 +582,8 @@ local function sendLog(text, markdown)
 	return api.sendMessage(config.log_chat or config.admin.owner, text, markdown)
 end
 
-local function deleteMessages(chat_id, text, use_markdown, reply_to_message_id, send_sound)
-	--print(text)
-	
-	local url = BASE_URL .. '/deleteMessages?chat_id=' .. chat_id .. '&text=' .. URL.escape(text)
-
-	url = url .. '&disable_web_page_preview=true'
-
-end
-
 return {
 	sendMessage = sendMessage,
-	deleteMessages = deleteMessages,
 	sendRequest = sendRequest,
 	getMe = getMe,
 	getUpdates = getUpdates,
