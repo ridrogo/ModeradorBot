@@ -1,9 +1,9 @@
 return {
-	bot_api_key = '253183950:AAFNVzNFklR2I9M0k_mqAXMNdYoPqhHwSyk',
+	bot_api_key = 'readapikey',
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
 	admin = {
-		owner = 253183950,
+		owner = readowner,
 		admins = {
 			[123038464] = true,
 			[180791241] = true,
@@ -40,7 +40,7 @@ return {
 		'sendfiles.lua',
 		'killer.lua',
 		'beta.lua',
-        'say.lua',
+        	'say.lua',
 		'italic.lua',
 		'contact.lua',
 		'talk.lua',
