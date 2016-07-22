@@ -39,7 +39,7 @@ local function get_name_getban(msg, blocks, user_id)
 	end
 end
 
-local function get_ban_info(user_id, ln)
+local function get_ban_info(user_id, chat_id, ln)
 	local hash = 'ban:'..user_id
 	local ban_info = db:hgetall(hash)
 	if not next(ban_info) then
@@ -62,29 +62,19 @@ local function get_ban_info(user_id, ln)
 		if text == '' then
 			return lang[ln].getban.nothing
 		else
+			local warns = (db:hget('chat:'..chat_id..':warns', user_id)) or 0
+			local media_warns = (db:hget('chat:'..chat_id..':mediawarn', user_id)) or 0
+			text = text..'\n`Warns`: '..warns..'\n`Media warns`: '..media_warns
 			return text
 		end
 	end
 end
 
-local function do_keyboard_userinfo(user_id, chat_id, ln, page)
-	local number_page, callback_page, text_extra, callback_extra
-	if page == 'ban' then
-		number_page = '🗒 1/2'
-		callback_page = 'user:info:'..user_id
-		text_extra = '🔨 Ban'
-		callback_extra = 'userbutton:banuser:'..user_id
-	elseif page == 'info' then
-		number_page = '🗒 2/2'
-		callback_page = 'user:ban:'..user_id
-		text_extra = lang[ln].userinfo.remwarns_kb
-		callback_extra = 'userbutton:remwarns:'..user_id
-	end
-	
+local function do_keyboard_userinfo(user_id, ln)
 	local keyboard = {
 		inline_keyboard = {
-			{{text = number_page, callback_data = callback_page}},
-			{{text = text_extra, callback_data = callback_extra}},
+			{{text = lang[ln].userinfo.remwarns_kb, callback_data = 'userbutton:remwarns:'..user_id}},
+			{{text ='🔨 Ban', callback_data = 'userbutton:banuser:'..user_id}},
 		}
 	}
 	
@@ -107,32 +97,8 @@ local function check_reply(msg)
 	end
 end
 
-local function get_userinfo(user_id, chat_id, ln, page)
-	if page == 'ban' then
-		return lang[ln].userinfo.header_1..get_ban_info(user_id, ln)
-	elseif page == 'info' then
-		local text = lang[ln].userinfo.header_2
-		
-		std_warns = (db:hget('chat:'..chat_id..':warns', user_id)) or 0
-		media_warns = (db:hget('chat:'..chat_id..':mediawarn', user_id)) or 0
-		group_msgs = (db:hget('chat:'..chat_id..':userstats', user_id)) or 0
-		global_msgs = (db:hget('user:'..user_id, 'msgs')) or 0
-		global_media = (db:hget('user:'..user_id, 'media')) or 0
-		group_media = (db:hget('chat:'..chat_id..':usermedia', user_id)) or 0
-		last_msg = (db:hget('chat:'..chat_id..':userlast', user_id)) or '-'
-		
-		text = text..lang[ln].userinfo.warns..std_warns..'\n'
-		text = text..lang[ln].userinfo.media_warns..media_warns..'\n'
-		text = text..'\n'..lang[ln].userinfo.group_msgs..group_msgs..'\n'
-		text = text..lang[ln].userinfo.group_media..group_media..'\n'
-		if last_msg ~= '-' then last_msg = get_date(last_msg) end
-		text = text..lang[ln].userinfo.last_msg..last_msg..'\n'
-		
-		text = text..'\n'..lang[ln].userinfo.global_msgs..global_msgs..'\n'
-		text = text..lang[ln].userinfo.global_media..global_media..'\n'
-		
-		return text
-	end
+local function get_userinfo(user_id, chat_id, ln)
+	return lang[ln].userinfo.header_1..get_ban_info(user_id, chat_id, ln)
 end
 
 local action = function(msg, blocks, ln)
@@ -158,7 +124,6 @@ local action = function(msg, blocks, ln)
         else
             api.sendReply(msg, out, true)
         end
-        mystat('/adminlist')
     end
     if blocks[1] == 'status' then
     	if msg.chat.type == 'private' then return end
@@ -186,7 +151,6 @@ local action = function(msg, blocks, ln)
 		 		local text = make_text(lang[ln].status[status], name)
 		 		api.sendReply(msg, text)
 		 	end
-		 	mystat('/status')
 	 	end
  	end
  	if blocks[1] == 'id' then
@@ -198,7 +162,6 @@ local action = function(msg, blocks, ln)
  			id = msg.chat.id
  		end
  		api.sendReply(msg, '`'..id..'`', true)
- 		mystat('/tell')
  	end
 	if blocks[1] == 'settings' then
         
@@ -206,7 +169,6 @@ local action = function(msg, blocks, ln)
         
         local message = cross.getSettings(msg.chat.id, ln)
         api.sendReply(msg, message, true)
-        mystat('/settings') --save stats
     end
     if blocks[1] == 'welcome' then
         
@@ -290,8 +252,6 @@ local action = function(msg, blocks, ln)
                 api.editMessageText(msg.chat.id, id, lang[ln].settings.welcome.custom_setted, false, true)
             end
         end
-       
-        mystat('/welcome') --save stats
     end
     if blocks[1] == 'export' then
     	if msg.chat.type ~= 'private' then return end
@@ -414,17 +374,11 @@ local action = function(msg, blocks, ln)
 			api.sendReply(msg, lang[ln].bonus.no_user, true)
 		 	return
 		end
+		-----------------------------------------------------------------------------
 		
-		local page
-		if msg.cb then
-			page = blocks[2]
-		else
-			page = 'ban'
-		end
+		local keyboard = do_keyboard_userinfo(user_id, ln)
 		
-		local keyboard = do_keyboard_userinfo(user_id, msg.chat.id, ln, page)
-		
-		local text = get_userinfo(user_id, msg.chat.id, ln, page)
+		local text = get_userinfo(user_id, msg.chat.id, ln)
 		
 		if msg.cb then
 			api.editMessageText(msg.chat.id, msg.message_id, text, keyboard, true)
@@ -477,7 +431,6 @@ return {
 		'^/(user) (@[%w_]+)$',
 		'^/(user) (%d+)$',
 		
-		'^###cb:(user):(%a+):(%d+)$', --second block: new page
 		'^###cb:userbutton:(banuser):(%d+)$',
 		'^###cb:userbutton:(remwarns):(%d+)$',
 	}

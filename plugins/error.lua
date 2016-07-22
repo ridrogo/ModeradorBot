@@ -7,8 +7,8 @@ end
 return {
      action = action,
      triggers = {
-         '^/caracolamagic(a)$',
-         '^/caracol(a)$',
+         '^/[Cc]aracolamagic(a)$',
+         '^/[Cc]aracol(a)$',
          '^/ser(a)$'
 }
 }

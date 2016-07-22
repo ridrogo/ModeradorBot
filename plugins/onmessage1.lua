@@ -27,11 +27,7 @@ local function is_blocked(id)
 end
 
 pre_process = function(msg, ln)
-    if msg.from.id and is_blocked(msg.from.id) then
-        print('Blocked:', msg.from.id)
-        api.kickChatMember(msg.chat.id, msg.from.id)
-    return msg, true --if an user is blocked, don't go through plugins
-    end
+    
     local msg_type = 'text'
     if msg.media then msg_type = msg.text:gsub('###', '') end
     if not is_ignored(msg.chat.id, msg_type) then
@@ -170,10 +166,9 @@ pre_process = function(msg, ln)
         end
     end
     
---    if is_blocked(msg.from.id) then --ignore blocked users
---        api.kickChatMember(msg.chat.id, msg.from.id)
---        return msg, true --if an user is blocked, don't go through plugins
---    end
+    if is_blocked(msg.from.id) then --ignore blocked users
+        return msg, true --if an user is blocked, don't go through plugins
+    end
     
     return msg
 end

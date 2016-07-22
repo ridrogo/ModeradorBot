@@ -1,8 +1,3 @@
-local triggers = {
-	'^/(caracolamagica) (.*)$',
-	'^/(caracola) (.*)$'
-}
-
 local action = function(msg, blocks, ln)
 	
 if blocks[1] == 'caracolamagica' or blocks[1] == 'caracola' and blocks[2] then
@@ -12,7 +7,7 @@ end
   if num == 0 then
 	api.sendSticker(msg.chat.id,  './caracola/si.webp')
   elseif num == 1 then
-    	api.sendSticker(msg.chat.id, './caracola/no.webp')
+  api.sendSticker(msg.chat.id, './caracola/no.webp')
  elseif num == 2 then
 	api.sendSticker(msg.chat.id,  './caracola/probablemente.webp')
   elseif num == 3 then
@@ -22,6 +17,9 @@ end
   
     
  return {
-	action = action,
-	triggers = triggers
-}
+ 	action = action,
+ 	triggers = {
+ 	'/[Cc]aracolamagica (.*)',
+	'/[Cc]aracola (.*)'
+ 		}
+ 	}

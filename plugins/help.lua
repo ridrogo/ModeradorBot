@@ -6,14 +6,14 @@ local function make_keyboard(mod, mod_current_position)
 	        ['Adm. de Baneos'] = '!banhammer',
 	        ['Info. del Grupo'] = '!info',
 	        ['Adm. de Flood'] = '!flood',
-	        ['Media settings'] = '!media',
+	        ['Ajustes Multimedia'] = '!media',
 	        ['Ajustes de Bienvenida'] = '!welcome',
 	        ['Ajustes Generales'] = '!settings',
 	        ['Comandos Extra'] = '!extra',
 	        ['Advertencias'] = '!warns',
 	        ['Caracteres Especiales'] = '!char',
 	        ['Links'] = '!links',
-	        --['Languages'] = '!lang'
+	        ['Idiomas'] = '!lang'
         }
         local line = {}
         for k,v in pairs(list) do
@@ -43,7 +43,7 @@ local function make_keyboard(mod, mod_current_position)
 	else
 	    bottom_bar = {{text = '🔰 Sólo Admins', callback_data = '!mod'}}
 	end
-	table.insert(bottom_bar, {text = 'Información', callback_data = '!info_button'}) --insert the "Info" button
+	table.insert(bottom_bar, {text = 'Info e Interés', callback_data = '!info_button'}) --insert the "Info" button
 	table.insert(keyboard.inline_keyboard, bottom_bar)
 	return keyboard
 end
@@ -53,7 +53,9 @@ local function do_keybaord_credits()
     keyboard.inline_keyboard = {
     	{
     		{text = 'Canal', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
-    		{text = 'GitHub', url = 'https://github.com/'},
+    		{text = 'GitHub', url = 'https://github.com/ridrogo/ModeradorBot'},
+    		{text = 'Wamods.com', url = 'https://telegram.me/Wamods'},
+    		{text = 'WereWolf Español Oficial', url = 'https://telegram.me/werewolfespoficial'},
     	--	{text = 'Rate me!', url = 'https://telegram.me/storebot?start='..bot.username},
 		},
 		{
@@ -68,7 +70,7 @@ local function do_keyboard_private()
     keyboard.inline_keyboard = {
     	{
     		{text = '👥 Agregame a tu grupo', url = 'https://telegram.me/'..bot.username..'?startgroup=new'},
-    		{text = '📢 Canal del Bot', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
+    		{text = '📢 Canal de ayuda', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
 	    },
 	    {
 	        {text = '📕 Todos los Comandos', callback_data = '!user'}
@@ -101,14 +103,13 @@ local action = function(msg, blocks, ln)
     end
     local keyboard = make_keyboard()
     if blocks[1] == 'help' then
-        mystat('/help')
         if msg.chat.type == 'private' then
             local message = make_text(lang[ln].help.private, msg.from.first_name:mEscape())
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             return
         end
-        local res = api.sendKeyboard(msg.from.id, 'Choose the *role* to see the available commands:', keyboard, true)
+        local res = api.sendKeyboard(msg.from.id, 'Elige un  *rol* para ver los comandos disponibles:', keyboard, true)
         if res then
             api.sendMessage(msg.chat.id, lang[ln].help.group_success, true)
         else
