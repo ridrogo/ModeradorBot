@@ -58,6 +58,6 @@ Envia tus pullrequest para mejorar el código.
 
 
 
-
+Contactame
 --------------------
-https://telegram.me/Webrom
+[![https://telegram.me/Webrom](https://img.shields.io/badge/Webrom-Telegram-blue.svg)](https://telegram.me/Webrom)
