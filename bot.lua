@@ -7,22 +7,41 @@ clr = require 'term.colors'
 db = Redis.connect('127.0.0.1', 6379)
 --db:select(0)
 serpent = require('serpent')
+existe_apikey = io.open("./data/key","r")
 
 
 bot_init = function(on_reload) -- The function run when the bot is started or reloaded.
+--	print(clr.blue..'Loading config.lua...')
+--	config = dofile('config.lua') -- Load configuration file.
+--	if config.bot_api_key == '' then
+--		print(clr.red..'API KEY MISSING!')
+--		return
+--	end
+--	print('Loading utilities.lua...')
+--	cross, rdb = dofile('utilities.lua') -- Load miscellaneous and cross-plugin functions.
+--	print('Loading languages.lua...')
+--	lang = dofile(config.languages) -- All the languages available
+--	print('Loading API functions table...')
+--	api = require('methods')
 	
-	print(clr.blue..'Loading config.lua...')
-	config = dofile('config.lua') -- Load configuration file.
-	if config.bot_api_key == '' then
-		print(clr.red..'API KEY MISSING!')
+	print(clr.blue..'Deteniendo proceso de gbans...' ..clr.reset)
+	os.execute('sudo tmux kill-session -t ScriptGban')
+	print(clr.blue..'Leyendo config.lua...' ..clr.reset)
+	config = dofile('config.lua') 
+	if not existe_apikey then
+		print(clr.red..'No hay api key' ..clr.reset)
 		return
 	end
-	print('Loading utilities.lua...')
-	cross, rdb = dofile('utilities.lua') -- Load miscellaneous and cross-plugin functions.
-	print('Loading languages.lua...')
-	lang = dofile(config.languages) -- All the languages available
-	print('Loading API functions table...')
+	print(clr.blue..'Loading utilidades.lua...' ..clr.reset)
+	cross, rdb = dofile('utilities.lua') 
+	print(clr.blue..'Leyendo lenguages.lua...' ..clr.reset)
+	lang = dofile(config.languages) 
+	print(clr.blue..'Iniciando un nuevo proceso de gbans...' ..clr.reset)
+	os.execute('sudo TMUX= tmux new-session -s "ScriptGban" -d "bash gbanner/metodo.sh gbans"')
+	print(clr.blue..'Leyendo tabla de funciones...' ..clr.reset)
 	api = require('methods')
+	
+	tot = 0
 	
 	current_m = 0
 	last_m = 0

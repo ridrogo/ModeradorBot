@@ -4,7 +4,7 @@ local function do_keybaord_credits()
     	{
     		{text = 'Canal', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
     		{text = 'GitHub', url = 'https://github.com/'},
-    	--	{text = 'Rate me!', url = 'https://telegram.me/storebot?start='..bot.username},
+    		{text = 'Evalúame!', url = 'https://telegram.me/storebot?start='..bot.username},
 		}
 	}
 	return keyboard

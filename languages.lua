@@ -71,8 +71,9 @@ return {
                             .."`/status [usuario|id]` = muestra el estado actual del usuario `(miembro|expulsado/salió del chat|baneado|admin/creador/a|nunca visto)`.\n"
                             .."`/banlist` = muestra la lista de usuarios baneados. Incluye el motivo (si se proporciona durante el baneo).\n"
                             .."`/banlist -` = limpia la lista de baneos.\n"
-                            .."`/agban [por respuesta|usuario|id]` = Banea y bloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
-                            .."`/aungban [por respuesta|usuario|id]` = Desbanea y desbloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
+                            .."`/gban [por respuesta|id] (nuevo)` = Banea y bloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
+                            .."`/ungban [por respuesta|id] (nuevo)` = Desbanea y desbloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
+                            .."`/antispam [on|off] (nuevo)` = Expulsa o banea a cualquiera que envíe un enlace del tipo (http://telegram.me o http://telegram.me/joinchat) además de tener un filtro de canales.\n"                            
                             .."\n*Nota*: tu puedes escribir algo despues del comando `/ban` (o despues del usuario, si estás baneando por usuario)."
                             .." Ese comentario será usado como motivo del ban."
                             .."\n*Nota 2*: Para usar el *Baneo Global* necesitas tener privilegios de desarrollador, contacta a [Webrom](http://telegram.me/Webrom) o [Webrom2](http://telegram.me/Webrom2) para que te los proporcione.",
@@ -152,10 +153,10 @@ return {
                     ..'`/info` : Ver informacion sobre el bot\n'
                     ..'`/group` : Ver el link de grupo de discusión\n'
                     ..'`/c` <feedback> : envía un feedback al administrador del bot, podrías reportar un error si lo encuentras.\n'
-                    ..'`/help` : Ver este mensaje.',
-		           -- ..'\n\nSi te gusta este bot, por favor deja tu voto [aqui](https://telegram.me/storebot?start=groupbutler_bot)',
+                    ..'`/help` : Ver este mensaje.'
+		            ..'\n\nSi te gusta este bot, por favor deja tu voto [aqui](https://telegram.me/storebot?start=GroupButlerEsp_bot)',
 		    private = '¡Hola *&&&1*!\n'
-                   ..'Soy Moderación Bot, un _bot moderador_ para tus grupos.\n'
+                   ..'Soy Group Butler Español Bot, un _bot moderador_ para tus grupos.\n'
                    ..'\n*¿Como puedo ayudarte?*\n'
                    ..'\nPuedo banear, expulsar, advertir a cualquier usuario que tú desees.\n'
                    ..'Solo necesito que me agregues y des administración y mi trabajo empieza!\n'
@@ -406,7 +407,7 @@ return {
             dashboard = {
                 private = '_Te he enviado toda la info del grupo en privado_',
                 first = 'Navega por este mensaje para ver *toda la info* sobre este grupo!',
-                flood = '- *Estado*: `&&&1`\n- *Acción* cuando un usuario flodea: `&&&2`\n- Número de mensajes *cada 5 segundos* permitido: `&&&3`\n- *Multimedia ignorada*:\n&&&4',
+                antiflood = '- *Estado*: `&&&1`\n- *Acción* cuando un usuario flodea: `&&&2`\n- Número de mensajes *cada 5 segundos* permitido: `&&&3`\n- *Multimedia ignorada*:\n&&&4',
                 settings = 'Ajustes',
                 admins = 'Admins',
                 rules = 'Reglas',
@@ -833,7 +834,7 @@ return {
             dashboard = {
                 private = '_I\'ve sent you the group dashboard in private_',
                 first = 'Navigate this message to see *all the info* about this group!',
-                flood = '- *Status*: `&&&1`\n- *Action* when an user floods: `&&&2`\n- Number of messages *every 5 seconds* allowed: `&&&3`\n- *Ignored media*:\n&&&4',
+                antiflood = '- *Status*: `&&&1`\n- *Action* when an user floods: `&&&2`\n- Number of messages *every 5 seconds* allowed: `&&&3`\n- *Ignored media*:\n&&&4',
                 settings = 'Settings',
                 admins = 'Admins',
                 rules = 'Rules',

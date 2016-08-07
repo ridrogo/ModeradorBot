@@ -1,0 +1,974 @@
+[Friday, 29 July 2016 at 15:24:12]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hget' command
+FROM: 180791241
+CHAT: -1001065173026
+TEXT: ###botadded
+
+[Friday, 29 July 2016 at 15:40:16]
+ERROR: ./methods.lua:289: attempt to concatenate local 'chat_id' (a table value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /responder hols
+
+[Friday, 29 July 2016 at 22:54:14]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 508196
+CHAT: 508196
+TEXT: ###cb:dashboard:flood:-1001057672056
+
+[Saturday, 30 July 2016 at 18:37:47]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 235105214
+CHAT: -1001065592085
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:03:43]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 134431937
+CHAT: -1001051303446
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:04:07]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 75482585
+CHAT: -1001051303446
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:04:29]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 133030495
+CHAT: -1001065592085
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:06:16]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 138117486
+CHAT: -1001051303446
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:07:26]
+ERROR: plugins/service.lua:132: attempt to index field 'added' (a nil value)
+FROM: 138117486
+CHAT: -1001054144666
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 19:18:31]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 209884527
+CHAT: 209884527
+TEXT: ###cb:dashboard:flood:-1001050714329
+
+[Saturday, 30 July 2016 at 20:03:56]
+ERROR: plugins/service.lua:135: attempt to concatenate global 'title' (a nil value)
+FROM: 242784053
+CHAT: -1001064311261
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 20:06:55]
+ERROR: plugins/service.lua:135: attempt to concatenate global 'title' (a nil value)
+FROM: 75482585
+CHAT: -1001064311261
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 20:34:43]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 209884527
+CHAT: 209884527
+TEXT: ###cb:dashboard:flood:-1001039318110
+
+[Saturday, 30 July 2016 at 20:37:18]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 209884527
+CHAT: 209884527
+TEXT: ###cb:dashboard:flood:-1001039318110
+
+[Saturday, 30 July 2016 at 20:46:22]
+ERROR: plugins/service.lua:135: attempt to concatenate global 'title' (a nil value)
+FROM: 82445029
+CHAT: -1001039318110
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 21:04:07]
+ERROR: plugins/service.lua:134: attempt to concatenate global 'name' (a nil value)
+FROM: 142666124
+CHAT: -1001054144666
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 21:07:02]
+ERROR: plugins/service.lua:134: attempt to concatenate global 'name' (a nil value)
+FROM: 139455017
+CHAT: -160423363
+TEXT: ###removed
+
+[Saturday, 30 July 2016 at 21:51:11]
+ERROR: ./methods.lua:319: attempt to index local 'msg' (a number value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /isbanned
+
+[Saturday, 30 July 2016 at 22:14:52]
+ERROR: ./methods.lua:294: attempt to concatenate local 'reply_to_message_id' (a boolean value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /links
+
+[Saturday, 30 July 2016 at 22:15:09]
+ERROR: ./methods.lua:294: attempt to concatenate local 'reply_to_message_id' (a boolean value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /links
+
+[Saturday, 30 July 2016 at 22:16:03]
+ERROR: ./methods.lua:294: attempt to concatenate local 'reply_to_message_id' (a boolean value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /links
+
+[Saturday, 30 July 2016 at 22:20:42]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /links
+
+[Saturday, 30 July 2016 at 22:21:01]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /links
+
+[Sunday, 31 July 2016 at 15:11:58]
+ERROR: plugins/admin.lua:375: attempt to concatenate global 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:14:06]
+ERROR: ./methods.lua:294: attempt to concatenate local 'reply_to_message_id' (a boolean value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:17:35]
+ERROR: ./methods.lua:319: attempt to index local 'msg' (a number value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:21:52]
+ERROR: ./methods.lua:289: attempt to concatenate local 'chat_id' (a table value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:22:46]
+ERROR: ./methods.lua:289: attempt to concatenate local 'chat_id' (a table value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:23:06]
+ERROR: ./methods.lua:289: attempt to concatenate local 'chat_id' (a table value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:24:00]
+ERROR: ./methods.lua:294: attempt to concatenate local 'reply_to_message_id' (a boolean value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:27:40]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban
+
+[Sunday, 31 July 2016 at 15:52:57]
+ERROR: plugins/admin.lua:373: attempt to concatenate global 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 123038464
+
+[Sunday, 31 July 2016 at 15:55:59]
+ERROR: plugins/admin.lua:373: attempt to concatenate global 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 1238464
+
+[Sunday, 31 July 2016 at 15:56:45]
+ERROR: plugins/admin.lua:381: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 1238464
+
+[Sunday, 31 July 2016 at 15:58:05]
+ERROR: plugins/admin.lua:381: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 1
+
+[Sunday, 31 July 2016 at 15:59:11]
+ERROR: plugins/admin.lua:382: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 1
+
+[Sunday, 31 July 2016 at 16:01:53]
+ERROR: plugins/admin.lua:382: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 123038464
+
+[Sunday, 31 July 2016 at 16:07:43]
+ERROR: plugins/admin.lua:374: attempt to concatenate global 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 123038464
+
+[Sunday, 31 July 2016 at 16:09:09]
+ERROR: plugins/admin.lua:367: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 123038464
+
+[Sunday, 31 July 2016 at 17:27:18]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 209884527
+CHAT: 209884527
+TEXT: /welcome
+
+[Monday, 01 August 2016 at 01:56:03]
+ERROR: plugins/antibots.lua:21: attempt to index field 'adder' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /antibot on
+
+[Monday, 01 August 2016 at 01:57:01]
+ERROR: plugins/antibots.lua:21: attempt to index field 'adder' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /antibot on
+
+[Monday, 01 August 2016 at 04:00:33]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 1616270
+CHAT: 1616270
+TEXT: ###cb:dashboard:flood:-1001066712672
+
+[Monday, 01 August 2016 at 04:00:47]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 1616270
+CHAT: 1616270
+TEXT: ###cb:dashboard:flood:-1001066712672
+
+[Monday, 01 August 2016 at 04:00:51]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 1616270
+CHAT: 1616270
+TEXT: ###cb:dashboard:flood:-1001066712672
+
+[Monday, 01 August 2016 at 16:05:25]
+ERROR: plugins/antibots.lua:17: attempt to call field 'id' (a number value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /lantibot 0
+
+[Monday, 01 August 2016 at 16:06:04]
+ERROR: plugins/antibots.lua:17: attempt to call field 'username' (a string value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /lantibot 0
+
+[Monday, 01 August 2016 at 16:15:13]
+ERROR: plugins/admin.lua:366: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /agban 1
+
+[Monday, 01 August 2016 at 18:35:50]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got boolean)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /inline
+
+[Monday, 01 August 2016 at 21:25:14]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hvals' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:25:16]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hvals' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:25:25]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hvals' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:28:00]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sismember' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:28:47]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: WRONGTYPE Operation against a key holding the wrong kind of value
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:31:32]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sismember' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:33:30]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sismember' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 21:33:40]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sismember' command
+FROM: 180791241
+CHAT: 180791241
+TEXT: /exportban
+
+[Monday, 01 August 2016 at 23:00:02]
+ERROR: plugins/users.lua:7: attempt to index field 'tell' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Monday, 01 August 2016 at 23:39:01]
+ERROR: plugins/users.lua:196: attempt to index local 'id' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 00:21:12]
+ERROR: plugins/users.lua:210: attempt to concatenate global 'username' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 01:14:04]
+ERROR: plugins/users.lua:209: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 01:28:33]
+ERROR: plugins/users.lua:215: attempt to concatenate global 'username' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 12:55:10]
+ERROR: plugins/users.lua:221: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 12:55:30]
+ERROR: plugins/users.lua:221: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 16:03:32]
+ERROR: plugins/users.lua:222: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 16:03:47]
+ERROR: plugins/users.lua:222: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 17:47:58]
+ERROR: plugins/users.lua:222: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:00:52]
+ERROR: plugins/users.lua:222: attempt to concatenate global 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:02:07]
+ERROR: plugins/users.lua:223: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:04:45]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:04:47]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:06:17]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:06:20]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:08:40]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:08:55]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:13:12]
+ERROR: plugins/users.lua:228: attempt to concatenate local 'title' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:26:07]
+ERROR: plugins/users.lua:223: attempt to concatenate local 'title' (a nil value)
+FROM: 123038464
+CHAT: 123038464
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:27:20]
+ERROR: plugins/users.lua:222: attempt to concatenate local 'title' (a nil value)
+FROM: 123038464
+CHAT: 123038464
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:30:32]
+ERROR: plugins/users.lua:222: attempt to concatenate local 'title' (a nil value)
+FROM: 123038464
+CHAT: 123038464
+TEXT: /tell
+
+[Tuesday, 02 August 2016 at 19:43:03]
+ERROR: plugins/settings.lua:58: attempt to call global 'mystat' (a nil value)
+FROM: 180791241
+CHAT: -1001056747541
+TEXT: /disable welcome
+
+[Wednesday, 03 August 2016 at 17:21:45]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 84598240
+CHAT: 84598240
+TEXT: ###cb:dashboard:flood:-1001052395576
+
+[Wednesday, 03 August 2016 at 17:22:48]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 84598240
+CHAT: 84598240
+TEXT: ###cb:dashboard:flood:-1001052395576
+
+[Wednesday, 03 August 2016 at 17:29:27]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 51628427
+CHAT: 51628427
+TEXT: ###cb:dashboard:flood:-1001041846048
+
+[Wednesday, 03 August 2016 at 17:29:40]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 51628427
+CHAT: 51628427
+TEXT: ###cb:dashboard:flood:-1001041846048
+
+[Wednesday, 03 August 2016 at 17:35:12]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 51628427
+CHAT: 51628427
+TEXT: ###cb:dashboard:flood:-1001041846048
+
+[Wednesday, 03 August 2016 at 18:02:27]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 51628427
+CHAT: 51628427
+TEXT: /welcome
+
+[Wednesday, 03 August 2016 at 21:25:23]
+ERROR: plugins/gbanner.lua:52: attempt to concatenate field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /isban
+
+[Wednesday, 03 August 2016 at 21:28:54]
+ERROR: plugins/gbanner.lua:52: attempt to concatenate field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /isban
+
+[Wednesday, 03 August 2016 at 22:28:42]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 0
+
+[Wednesday, 03 August 2016 at 22:43:45]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 0
+
+[Wednesday, 03 August 2016 at 22:48:33]
+ERROR: plugins/gban.lua:5: attempt to index global 'matches' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /ungban
+
+[Wednesday, 03 August 2016 at 22:49:02]
+ERROR: plugins/gban.lua:5: attempt to index global 'matches' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban
+
+[Wednesday, 03 August 2016 at 23:40:44]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 84139173
+CHAT: 84139173
+TEXT: ###cb:dashboard:flood:-1001055678063
+
+[Wednesday, 03 August 2016 at 23:40:50]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 84139173
+CHAT: 84139173
+TEXT: ###cb:dashboard:flood:-1001055678063
+
+[Thursday, 04 August 2016 at 08:28:11]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 5064714
+CHAT: 5064714
+TEXT: ###cb:dashboard:flood:-159920741
+
+[Thursday, 04 August 2016 at 18:26:30]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: ###cb:dashboard:flood:-1001066938736
+
+[Thursday, 04 August 2016 at 18:26:35]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: ###cb:dashboard:flood:-1001066938736
+
+[Thursday, 04 August 2016 at 18:27:06]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: 180791241
+TEXT: ###cb:dashboard:flood:-1001066938736
+
+[Thursday, 04 August 2016 at 21:30:34]
+ERROR: ./methods.lua:254: attempt to concatenate local 'chat_id' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Thursday, 04 August 2016 at 21:59:00]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hget' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /latinbots on
+
+[Thursday, 04 August 2016 at 22:13:33]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hget' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /latinbots on
+
+[Friday, 05 August 2016 at 04:12:11]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 243073889
+CHAT: 243073889
+TEXT: ###cb:dashboard:flood:-1001069964280
+
+[Friday, 05 August 2016 at 07:52:44]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 174514804
+CHAT: 174514804
+TEXT: ###cb:dashboard:flood:-1001069964280
+
+[Friday, 05 August 2016 at 07:55:51]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 174514804
+CHAT: 174514804
+TEXT: ###cb:dashboard:flood:-1001069964280
+
+[Friday, 05 August 2016 at 08:04:03]
+ERROR: utilities.lua:186: attempt to index local 'text' (a nil value)
+FROM: 174514804
+CHAT: 174514804
+TEXT: ###cb:dashboard:flood:-1001069964280
+
+[Friday, 05 August 2016 at 08:42:37]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 08:53:14]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 09:24:14]
+ERROR: plugins/service.lua:108: attempt to index global 'user' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:00:27]
+ERROR: plugins/service.lua:129: attempt to index field 'added' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###removed
+
+[Friday, 05 August 2016 at 10:06:54]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:11:41]
+ERROR: plugins/service.lua:111: attempt to call field 'kickuser' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:12:46]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:14:57]
+ERROR: plugins/service.lua:109: attempt to call method 'lower' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:15:31]
+ERROR: plugins/service.lua:111: attempt to call method 'find' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:16:39]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 53774152
+CHAT: -156200340
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:18:11]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:18:22]
+ERROR: ./methods.lua:94: attempt to concatenate local 'user_id' (a nil value)
+FROM: 53774152
+CHAT: -156200340
+TEXT: ###added
+
+[Friday, 05 August 2016 at 10:34:59]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sismember' command
+FROM: 232475666
+CHAT: -1001069964280
+TEXT: ###added
+
+[Friday, 05 August 2016 at 11:09:39]
+ERROR: utilities.lua:138: attempt to index global 'msg' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 11:11:11]
+ERROR: utilities.lua:138: attempt to index global 'msg' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 11:13:39]
+ERROR: utilities.lua:138: attempt to index global 'chat' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: ###added
+
+[Friday, 05 August 2016 at 18:36:04]
+ERROR: utilities.lua:202: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /enable spam
+
+[Friday, 05 August 2016 at 18:38:53]
+ERROR: utilities.lua:202: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /enable spam
+
+[Friday, 05 August 2016 at 18:41:52]
+ERROR: utilities.lua:202: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /enable spam
+
+[Friday, 05 August 2016 at 18:48:08]
+ERROR: utilities.lua:202: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /enable spam
+
+[Friday, 05 August 2016 at 18:55:09]
+ERROR: plugins/spam.lua:25: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /spam
+
+[Friday, 05 August 2016 at 18:55:12]
+ERROR: plugins/spam.lua:25: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /spam
+
+[Friday, 05 August 2016 at 18:56:12]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hget' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /spam on
+
+[Friday, 05 August 2016 at 18:57:03]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'hset' command
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /spam on
+
+[Friday, 05 August 2016 at 19:20:36]
+ERROR: plugins/spam.lua:37: attempt to concatenate global 'status' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: https://telegram.me/pruebin
+
+[Friday, 05 August 2016 at 19:25:09]
+ERROR: plugins/spam.lua:37: attempt to concatenate global 'status' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: https://telegram.me/pruebin
+
+[Friday, 05 August 2016 at 19:30:19]
+ERROR: plugins/spam.lua:37: attempt to concatenate global 'status' (a nil value)
+FROM: 263457352
+CHAT: -1001061713377
+TEXT: https://telegram.me/pruebin
+
+[Friday, 05 August 2016 at 21:01:48]
+ERROR: utilities.lua:202: attempt to index local 'text' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /enable spam
+
+[Saturday, 06 August 2016 at 05:01:23]
+ERROR: /usr/local/share/lua/5.2/socket/url.lua:31: bad argument #1 to 'gsub' (string expected, got nil)
+FROM: 243073889
+CHAT: 243073889
+TEXT: /welcome
+
+[Saturday, 06 August 2016 at 23:34:59]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 208830751
+CHAT: -1001051233675
+TEXT: Grupo de Virgos tratando de virgos a otros virgos pero con pokemon.
+
+https://telegram.me/joinchat/CLUc8T97Zgn8kDAnnUU9_Q
+
+[Sunday, 07 August 2016 at 00:17:07]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/pruebin
+
+[Sunday, 07 August 2016 at 00:18:46]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/pruebin
+
+[Sunday, 07 August 2016 at 00:19:50]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/pruebin
+
+[Sunday, 07 August 2016 at 00:20:08]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/pruebin
+
+[Sunday, 07 August 2016 at 10:17:51]
+ERROR: plugins/gban.lua:18: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 0
+
+[Sunday, 07 August 2016 at 10:22:22]
+ERROR: ./methods.lua:319: attempt to index field 'chat' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 7373
+
+[Sunday, 07 August 2016 at 10:52:31]
+ERROR: plugins/gban.lua:65: attempt to concatenate global 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /ungban 123038464
+
+[Sunday, 07 August 2016 at 10:54:52]
+ERROR: plugins/gban.lua:18: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:01:15]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:02:39]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'srem' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /ungban 123038464
+
+[Sunday, 07 August 2016 at 11:05:09]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'srem' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /ungban 123038464
+
+[Sunday, 07 August 2016 at 11:20:55]
+ERROR: plugins/gban.lua:19: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:21:46]
+ERROR: plugins/gban.lua:36: attempt to concatenate local 'name' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:25:21]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:25:46]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:29:44]
+ERROR: plugins/gban.lua:19: attempt to index field 'adder' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:31:49]
+ERROR: plugins/gban.lua:19: attempt to index field 'added' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:37:58]
+ERROR: /usr/local/share/lua/5.2/redis.lua:380: redis error: ERR wrong number of arguments for 'sadd' command
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 11:55:37]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/joinchat/CsanyT-YMXCNdxCHqiMDtg
+
+[Sunday, 07 August 2016 at 11:55:51]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001066938736
+TEXT: https://telegram.me/joinchat/CsanyT-YMXCNdxCHqiMDtg
+
+[Sunday, 07 August 2016 at 11:56:13]
+ERROR: ./methods.lua:119: attempt to index field '?' (a nil value)
+FROM: 180791241
+CHAT: -1001056747541
+TEXT: https://telegram.me/joinchat/CsanyT-YMXCNdxCHqiMDtg
+
+[Sunday, 07 August 2016 at 15:07:16]
+ERROR: plugins/gban.lua:20: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 15:08:06]
+ERROR: plugins/gban.lua:22: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 15:10:18]
+ERROR: plugins/gban.lua:76: attempt to index global 'blocks' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 123038464
+
+[Sunday, 07 August 2016 at 15:41:53]
+ERROR: plugins/gban.lua:32: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 0
+
+[Sunday, 07 August 2016 at 15:52:53]
+ERROR: plugins/gban.lua:19: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 38382
+
+[Sunday, 07 August 2016 at 15:59:42]
+ERROR: plugins/gban.lua:19: attempt to index field 'reply' (a nil value)
+FROM: 180791241
+CHAT: -1001061713377
+TEXT: /gban 38382
+

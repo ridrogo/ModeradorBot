@@ -52,11 +52,16 @@ local function do_keybaord_credits()
 	local keyboard = {}
     keyboard.inline_keyboard = {
     	{
-    		{text = 'Canal', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
-    		{text = 'GitHub', url = 'https://github.com/ridrogo/ModeradorBot'},
-    		{text = 'Wamods.com', url = 'https://telegram.me/Wamods'},
-    		{text = 'WereWolf Español Oficial', url = 'https://telegram.me/werewolfespoficial'},
-    	--	{text = 'Rate me!', url = 'https://telegram.me/storebot?start='..bot.username},
+    		{text = '✅ Canal', url = 'https://telegram.me/'..config.channel:gsub('@', '')},
+    		{text = '✅ GitHub', url = 'https://github.com/ridrogo/ModeradorBot'},
+    	},	
+    	{	
+    		{text = '✅ Wamods.com', url = 'https://telegram.me/Wamods'},
+    		{text = '✅ WereWolf Español Oficial', url = 'https://telegram.me/werewolfespoficial'},
+    	},	
+        {
+            {text = '✅ Death Note Serie', url = 'https://telegram.me/DeathNoteSerie'},
+        	{text = '✅ Evalúame!', url = 'https://telegram.me/storebot?start=GroupButlerEsp_bot'},
 		},
 		{
 		    {text = '🔙', callback_data = '!user'}

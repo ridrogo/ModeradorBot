@@ -1,33 +1,28 @@
 local action = function(msg, blocks)
-	local id
-	local response
 	if blocks[1] == 'isbanned' then
+		if not blocks[2] then
 		if not msg.reply then
-			api.sendReply(msg, 'Este comando necesita una respuesta, el username o el Id para funcionar')
+			api.sendReply(msg, '🔰Respondele a alguien para saber si está globalmente baneado (en grupos) y te enviaré el resultado por privado o consulta por privado adjuntando la ID: /isbanned (ID) por ejemplo: /isbanned 123456789')
 			return
-			else
-				id = msg.reply.from.id
+		else
+			id = msg.reply.from.id
 			end
 		else
-			if is_blocked(msg.reply.from.id) then
-				api.sendReply(msg, '✅ Este usuario si esta globalmente banneado.')
-			else
-				api.sendReply(msg, '❌❗️Este usuario no esta globalmente banneado o se ha ingresado el alias en lugar del ID. Si quieres reportarlo puedes reportarlo por privado a @Webrom o @Webrom2. Gracias.')
-			end
+			id = blocks[2]
 		end
---if blocks[1] == 'isbanned' and blocks[2] then
---     if is_blocked(blocks[2]) then
---        api.sendReply(msg, '✅ Este usuario si esta globalmente banneado.')
---      else
---        api.sendReply(msg, '❌❗️Este usuario no esta globalmente banneado o se ha ingresado el alias en lugar del ID. Si quieres reportarlo puedes reportarlo por privado a @Webrom o @Webrom2. Gracias.')
---      end
---    end
+		if is_blocked_global(id) then
+        api.sendMessage(msg.from.id, '✅ Este usuario si esta globalmente banneado.')
+      else
+        api.sendMessage(msg.from.id, '❌❗️Este usuario no esta globalmente banneado o se ha ingresado el alias en lugar del ID. Si quieres reportarlo puedes reportarlo por privado a @webrom o @Webrom2. Gracias.')
+      end
+    end
 end
 
 return {
    action = action,
    triggers = {
-'^/(isbanned) (%d*)$',
-'^!(isbanned) (%d*)$'
+'^/(isbanned)$',
+'^/(isbanned) (%d*)$'
 	}
 }
+

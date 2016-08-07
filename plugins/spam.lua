@@ -1,18 +1,29 @@
 local action = function(msg, blocks, ln)
---api.kickUser(chat_id, user_id, ln)
---api.sendMessage(msg.chat.id, '_Prohibido enviar enlaces al grupo sin autorización de los Admins..._\n_La proxima seras advertido a ' ..matches[1]..'_...', true)
-iduser = msg.from.id
-name = msg.from.first_name
-user = msg.from.username
-api.kickUser(msg.chat.id, msg.from.id, ln)
-api.sendMessage(msg.chat.id, '\n\n_ID Del Usuario_: ' ..iduser.. '\n_Nombre_: ' ..name.. '\n_Usuario_: @' ..user.. '  *Ha sido expulsado por publicar links de invitaciones de otros grupos y/o hacer tag de algún canal.* \n_Si eres Admin ignora el mensaje._ *No olviden leer las reglas, para asi evitar recibir un ban definitivo.* ', true)
+
+ 			local is_normal_group = false
+	   		if msg.chat.type == 'group' then is_normal_group = true end
+	
+	local text
+if blocks[1] == 'antispam' then
+		if blocks[2]:match('^(on)$') and blocks[2]:match('^(off)$') then
+			api.sendMessage(msg.chat.id, 'Estados disponibles: on/off')
+			return
+		end
+		local status = blocks[2]
+		local current = db:hget('bot:general', 'antispam')
+		if current == status then
+			api.sendMessage(msg.chat.id, 'Modo Anti-Spam *ya está '..status..'*', true)
+		else 
+			db:hset('bot:general', 'antispam', status)
+			api.sendMessage(msg.chat.id, 'Modo Anti-Spam: *'..status..'*', true)
+		end
+	end
+
 end
+
 return {
-   action = action,
-   triggers = {
-            "[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm]%.[Mm][Ee]",
-            "[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm]%.[Oo][Rr][Gg]",
-            "[Cc][Aa][Nn][Aa][Ll] @(.*)",
-            "[Cc][Hh][Aa][Nn][Nn][Ee][Ll] @(.*)",
-         }
-     }
+	action = action,
+	triggers = {
+	'^/(antispam) (%a%a%a?)$',
+	}
+}

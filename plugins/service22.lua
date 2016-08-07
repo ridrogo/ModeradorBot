@@ -61,13 +61,12 @@ local function get_welcome(msg, ln)
 end
 
 local action = function(msg, blocks, ln)
-	
 	--avoid trolls
 	if not msg.service then return end
-	
+
 	--if the bot join the chat
 	if blocks[1] == 'botadded' then
-			api.sendMessage(msg.chat.id, '\nGracias por agregarme a tu grupo, ahora para configurarme correctamente tienes que darme admin (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer servirte en tu grupo 🔰\n', true)		
+			api.sendMessage(msg.chat.id, '\nGracias por agregarme a tu grupo, ahora para configurarme correctamente tienes que darme admin (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer servirte en tu grupo 🔰\n', true)
 		if db:hget('bot:general', 'adminmode') == 'on' and not is_bot_owner(msg) then
 			api.sendMessage(msg.chat.id, 'Admin mode is on: only the admin can add me to a new group')
 			api.leaveChat(msg.chat.id)
@@ -90,7 +89,7 @@ local action = function(msg, blocks, ln)
 			return
 		end
 		
-		if msg.chat.type == 'supergroup' and is_prebanned(msg.chat.id, msg.added.id) then
+		--[[if msg.chat.type == 'supergroup' and db:sismember('chat:'..msg.chat.id..':prevban') then
 			if msg.adder and is_mod(msg) then --if the user is added by a moderator, remove the added user from the prevbans
 				db:srem('chat:'..msg.chat.id..':prevban', msg.added.id)
 			else --if added by a not-mod, ban the user
@@ -99,42 +98,46 @@ local action = function(msg, blocks, ln)
 					api.sendMessage(msg.chat.id, make_text(lang[ln].banhammer.was_banned, msg.added.first_name))
 				end
 			end
-		end
+		end]]
 		
 		cross.remBanList(msg.chat.id, msg.added.id) --remove him from the banlist
-
-
---		if msg.added.username then
---			local username = msg.added.username:lower()
---			if username:find('bot', -3) then return end
---		end
+	
+local function isABot(username)
+  -- Flag its a bot 0001000000000000
+  local binFlagIsBot = 4096
+  local result = bit32.band(binFlagIsBot)
+  local result = binFlagIsBot 
+  return
+end	
+	
+		if msg.added.username then
+			local username = msg.added.username:lower()
+			if isABot(username) then
+			api.kickUser(chat_id, user_id, ln)
+			return end
+		end
 		
 		local text = get_welcome(msg, ln)
 		if text then
 			api.sendMessage(msg.chat.id, text, true)
 		end
-		
 		--if not text: welcome is locked
-	end
 	
 	--if the bot is removed from the chat
 	if blocks[1] == 'botremoved' then
-			api.sendMessage(msg.from.id, '\nEs una lástima que me hayas sacado, si cambias de opinión puedes volver a agregarme (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer volver a servirte en tu grupo 🔰\n', true)				
+			api.sendMessage(msg.from.id, '\nEs una lástima que me hayas sacado, si cambias de opinión puedes volver a agregarme (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer volver a servirte en tu grupo 🔰\n', true)		
+--		api.sendMessage(msg.chat.id, '\nEs una lástima que me hayas sacado, si cambias de opinión puedes volver a agregarme (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer volver a servirte en tu grupo 🔰\n', true)		
 		--remove the group settings
 		cross.remGroup(msg.chat.id, true)
 		
 		--save stats
         db:hincrby('bot:general', 'groups', -1)
 	end
-	
+	    
 	if blocks[1] == 'removed' then
-	if msg.left_chat_member then
-		if tonumber(msg.left_chat_member.id) then
 			name = msg.from.first_name
 			title = msg.chat.title
 			api.sendMessage(msg.from.id, '\n' ..name.. ', es una lástima que te hayas ido de ' ..title.. ', si cambias de opinión y quieres volver a ingresar, solo dile a @Webrom o @Webrom2 que te ayude, gracias por participar. 🔰\n', true)		
-		end	
-	end
 		if msg.remover and msg.removed then
 			if msg.remover.id ~= msg.removed.id and msg.remover.id ~= bot.id then
 				local action
@@ -147,6 +150,7 @@ local action = function(msg, blocks, ln)
 			end
 		end
 	end
+end
 end
 
 return {

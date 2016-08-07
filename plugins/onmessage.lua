@@ -18,7 +18,7 @@ local function is_ignored(chat_id, msg_type)
     end
 end
 
-local function is_blocked(id)
+local function is_blocked_global(id)
 	if db:sismember('bot:blocked', id) then
 		return true
 	else
@@ -26,12 +26,30 @@ local function is_blocked(id)
 	end
 end
 
+local function is_kick_spammer(msg_text)
+	if io.open("./data/spam","r"):read() then
+	    return true
+	else
+	    return false
+	end
+end
+
 pre_process = function(msg, ln)
-    if msg.from.id and is_blocked(msg.from.id) then
-        print('Blocked:', msg.from.id)
+    if msg.from.id and is_blocked_global(msg.from.id) then
+        print('Bloqueado y Baneado:', msg.from.id)
         api.kickChatMember(msg.chat.id, msg.from.id)
     return msg, true --if an user is blocked, don't go through plugins
-    end
+end
+--db:hget('bot:general', 'spam') == 'on' and
+--    if msg.from.id and is_kick_spammer(msg.text) then
+--	local iduser = msg.from.id
+--    local name = msg.from.first_name
+--    if msg.from.username then name = name..' (@'..msg.from.username..')' end
+ --   	        local message = make_text(lang[ln].preprocess.arab_kicked, name:mEscape())
+--    	        api.sendMessage(msg.chat.id, '\n\n_ID Del Usuario_: ' ..iduser.. '\n_Nombre_: ' ..name.. ' *Ha sido expulsado por publicar links de invitaciones de otros grupos y/o hacer tag de algún canal.* \n_Si eres Admin ignora el mensaje._ *No olviden leer las reglas, para asi evitar recibir un ban definitivo.* ', true)
+--    	        api.kickChatMember(msg.chat.id, msg.from.id)
+--    	    return msg, true
+--    	    end
     local msg_type = 'text'
     if msg.media then msg_type = msg.text:gsub('###', '') end
     if not is_ignored(msg.chat.id, msg_type) then
@@ -81,7 +99,6 @@ pre_process = function(msg, ln)
             return msg, true --if an user is spamming, don't go through plugins
         end
     end
-    
     if msg.media and not(msg.chat.type == 'private') and not msg.cb then
         if is_mod(msg) then return msg end
         local name = msg.from.first_name
@@ -169,7 +186,24 @@ pre_process = function(msg, ln)
     	    end
         end
     end
+
+--[[        local spamhash = 'spam:'..msg.chat.id..':'..msg.from.id
+        local msgs = tonumber(db:get(spamhash)) or 0
+        if msgs == 0 then msgs = 1 end
+        local default_spam_value = 2
+        if msg.chat.type == 'private' then default_spam_value = 3 end
+        local max_msgs = tonumber(db:hget('chat:'..msg.chat.id..':flood', 'MaxFlood')) or default_spam_value
+        if msg.cb then max_msgs = 3 end
+        local max_time = 5
+        db:setex(spamhash, max_time, msgs+1)
+        if msgs > max_msgs then]]
     
+--    local spam_status =  or 'allowed'
+--    	print('\n\n_ID Del Usuario_: ' ..iduser.. '\n_Nombre_: ' ..name.. ' *Ha sido expulsado por publicar links de invitaciones de otros grupos y/o hacer tag de algún canal.* \n_Si eres Admin ignora el mensaje._ *No olviden leer las reglas, para asi evitar recibir un ban definitivo.* ', msg.chat.id)				
+--           api.sendMessage(msg.chat.id, '\n\n_ID Del Usuario_: ' ..iduser.. '\n_Nombre_: ' ..name.. ' *Ha sido expulsado por publicar links de invitaciones de otros grupos y/o hacer tag de algún canal.* \n_Si eres Admin ignora el mensaje._ *No olviden leer las reglas, para asi evitar recibir un ban definitivo.*', true)
+--            return msg, true
+--end
+
 --    if is_blocked(msg.from.id) then --ignore blocked users
 --        api.kickChatMember(msg.chat.id, msg.from.id)
 --        return msg, true --if an user is blocked, don't go through plugins

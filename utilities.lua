@@ -133,6 +133,17 @@ function is_banned(chat_id, user_id)
 	end
 end
 
+function is_prebanned(chat_id, user_id)
+	--useful only for normal groups
+	local hash = 'chat:'..chat_id..':prevban'
+	local res = db:sismember(hash, user_id)
+	if res then
+		return true
+	else
+		return false
+	end
+end
+
 function is_blocked_global(id)
 	if db:sismember('bot:blocked', id) then
 		return true

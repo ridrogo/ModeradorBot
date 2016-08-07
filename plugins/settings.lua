@@ -49,29 +49,32 @@ local action = function(msg, blocks, ln)
         
         --check the command to unlock
         if input == 'rules' then
-            mystat('/disable rules') --save stats
+--            mystat('/disable rules') --save stats
             disable_set('Rules', msg, ln)  
         elseif input == 'about' then
-            mystat('/disable about') --save stats
+--            mystat('/disable about') --save stats
             disable_set('About', msg, ln)
         elseif input == 'welcome' then
-            mystat('/disable welcome') --save stats
+--            mystat('/disable welcome') --save stats
             disable_set('Welcome', msg, ln)
         elseif input == 'modlist' then
-            mystat('/disable modlist') --save stats
+--            mystat('/disable modlist') --save stats
             disable_set('Modlist', msg, ln)
         elseif input == 'extra' then
-            mystat('/disable extra') --save stats
+--            mystat('/disable extra') --save stats
             disable_set('Extra', msg, ln)
         elseif input == 'rtl' then
-            mystat('/disable rtl') --save stats
+--            mystat('/disable rtl') --save stats
             disable_set('Rtl', msg, ln)
         elseif input == 'arab' then
-            mystat('/disable arab') --save stats
+--            mystat('/disable arab') --save stats
             disable_set('Arab', msg, ln)
         elseif input == 'report' then
-            mystat('/disable report') --save stats
+--            mystat('/disable report') --save stats
             disable_set('Report', msg, ln)
+        elseif input == 'spam' then
+--            mystat('/disable report') --save stats
+            disable_set('Spam', msg, ln)
         else
             api.sendReply(msg, make_text(lang[ln].settings.disable.wrong_input), true)
         end
@@ -93,29 +96,32 @@ end
         
         --check the command to enable
         if input == 'rules' then
-            mystat('/enable rules') --save stats
+--            mystat('/enable rules') --save stats
             enable_set('Rules', msg, ln)
         elseif input == 'about' then
-            mystat('/enable about') --save stats
+--            mystat('/enable about') --save stats
             enable_set('About', msg, ln)
         elseif input == 'welcome' then
-            mystat('/enable welcome') --save stats
+--            mystat('/enable welcome') --save stats
             enable_set('Welcome', msg, ln)
         elseif input == 'modlist' then
-            mystat('/enable modlist') --save stats
+--            mystat('/enable modlist') --save stats
             enable_set('Modlist', msg, ln)
         elseif input == 'extra' then
-            mystat('/enable extra') --save stats
+--            mystat('/enable extra') --save stats
             enable_set('Extra', msg, ln)
         elseif input == 'rtl' then
-            mystat('/enable rtl') --save stats
+--            mystat('/enable rtl') --save stats
             enable_set('Rtl', msg, ln)
         elseif input == 'arab' then
-            mystat('/enable arab') --save stats
+--            mystat('/enable arab') --save stats
             enable_set('Arab', msg, ln)
         elseif input == 'report' then
-            mystat('/enable report') --save stats
+--            mystat('/enable report') --save stats
             enable_set('Report', msg, ln)
+        elseif input == 'spam' then
+--            mystat('/enable report') --save stats
+            enable_set('Spam', msg, ln)
         else
             api.sendReply(msg, make_text(lang[ln].settings.enable.wrong_input), true)
         end
@@ -203,7 +209,7 @@ end
             end
         end
        
-        mystat('/welcome') --save stats
+  --      mystat('/welcome') --save stats
     end
     
     if blocks[1] == 'settings' then
@@ -211,7 +217,7 @@ end
         --get settings
         local message = cross.getSettings(msg.chat.id, ln)
         
-        mystat('/settings') --save stats
+--        mystat('/settings') --save stats
         api.sendReply(msg, message, true)
     end
 

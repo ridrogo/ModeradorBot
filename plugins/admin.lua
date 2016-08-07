@@ -351,55 +351,65 @@ local action = function(msg, blocks, ln)
 		end
 	end
 	if blocks[1] == 'gban' then
+		local name
 		local id
 		if not blocks[2] then
 			if not msg.reply then
-				api.sendReply(msg, 'Este comando necesita una respuesta, el username o el Id para funcionar')
+				api.sendReply(msg, 'Este comando necesita una respuesta, o el Id para funcionar')
 				return
 			else
 				id = msg.reply.from.id
+				name = msg.reply.from.first_name
 			end
 		else
 			id = blocks[2]
+			name = msg.from.first_name
 		end
 		local response = db:sadd('bot:blocked', id)
---		api.kickChatMember(msg.chat.id, msg.from.id)
 		local text
 		if response == 1 then
-			text = id..' *Has sido Bloqueado y expulsado Globalmente*'
-		else
-			text = id..' *Ya estás Bloqueado y expulsado Globalmente*'
+			text = '\n' ..name.. ', tu ID es ' ..id.. ' has sido Bloqueado y Baneado Globalmente por @' ..bot.username.. ', si crees que es un error, contacta a @Webrom o @Webrom2 para que pueda revisar tu caso, gracias. 🔰\n'				
+--			text = id..' Has sido Bloqueado y expulsado Globalmente'
+		 else			
+			text = '\n' ..name.. ', tu ID es ' ..id.. ' ya has sido Bloqueado y Baneado Globalmente por @' ..bot.username.. ', si crees que es un error, contacta a @Webrom o @Webrom2 para que pueda revisar tu caso, gracias. 🔰\n'
+--			text = id..' Ya estás Bloqueado y expulsado Globalmente'
 		end
 		api.sendReply(msg, text)
+		api.sendMessage(id, text)
 	end
 	if blocks[1] == 'ungban' then
 		local id
 		local response
 		if not blocks[2] then
 			if not msg.reply then
-				api.sendReply(msg, 'Este comando necesita una respuesta, el username o el Id para funcionar')
+				api.sendReply(msg, 'Este comando necesita una respuesta, o el Id para funcionar')
 				return
 			else
 				id = msg.reply.from.id
+				name = msg.reply.from.first_name
 			end
 		else
 			id = blocks[2]
+			name = msg.from.first_name
 		end
 		local response = db:srem('bot:blocked', id)
 		local text
 		if response == 1 then
-			text = id..' *Has sido Desbloqueado y desbaneado Globalmente*'
+			text = '\n' ..name.. ', tu ID es ' ..id.. ' has sido Desbloqueado y Desbaneado Globalmente por @' ..bot.username.. ', si fue un error, disculpa las molestias, gracias. 🔰\n'							
+--			text = id..' Has sido Desbloqueado y desbaneado Globalmente'
 		else
-			text = id..' *Ya estás Desbloqueado y desbaneado Globalmente*'
+			text = '\n' ..name.. ', tu ID es ' ..id.. ' ya has sido Desbloqueado y Desbaneado Globalmente por @' ..bot.username.. ', gracias. 🔰\n'
+--			text = id..' Ya estás Desbloqueado y desbaneado Globalmente'
 		end
 		api.sendReply(msg, text)
+		api.sendMessage(id, text)
 	end
 	if blocks[1] == 'isgban' then
 		if not msg.reply then
 			api.sendReply(msg, 'Este comando necesita una respuesta, el username o el Id para funcionar')
 			return
 		else
-			if is_blocked(msg.reply.from.id) then
+			if is_blocked_global(msg.reply.from.id) then
 				api.sendReply(msg, 'yes')
 			else
 				api.sendReply(msg, 'no')
