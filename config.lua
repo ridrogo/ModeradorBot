@@ -1,5 +1,5 @@
 return {
-	bot_api_key = 'readapikey',
+	bot_api_key = io.open("./data/key","r"):read(),
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
 	admin = {
@@ -40,15 +40,22 @@ return {
 		'sendfiles.lua',
 		'killer.lua',
 		'beta.lua',
-        	'say.lua',
+	        'say.lua',
 		'italic.lua',
 		'contact.lua',
 		'talk.lua',
 		'error.lua',
-		'saludador.lua',
+--		'saludador.lua',
 		'sera.lua',
-		'isbanned.lua'
-	--	'spam.lua'
+		'isbanned.lua',
+		'canal.lua',
+--		'risbanned.lua'
+		'spam.lua',
+		'antispam.lua',
+--		'gbanner.lua',
+		'gban.lua',
+		'antibots.lua',
+		'inline.lua'
 	},
 	available_languages = {
 		'es',
