@@ -52,34 +52,66 @@ if [ "$1" = "config" ]; then
   sudo ./run.sh
 fi
 
-session=GroupButlerEsp
-session2=ScriptGban
+if [ "$1" = "kp" ]; then
 
-if [ "$1" = "" ]; then
-	clear
-	sudo tmux kill-session -t $session
-	clear
-	sudo tmux new-session -s "$session" -d 'lua bot.lua'
-	sudo tmux attach -t "$session"
-
-fi
-
-if [ "$1" = "attach" ]; then
-	clear
-	sudo tmux attach -t "$session"
-fi
-
-if [ "$1" = "attach-gbans" ]; then
-	clear
-	sudo tmux attach -t "$session2"
+	sudo screen -X -S running kill
+	sudo service redis-server start
+  clear
+  while true
+  do
+	 sudo screen -S running -t screen lua bot.lua
+	 echo -e '\e[0;31mCRASH DETECTADO\e[0m'
+	 echo -e '\e[0;31mREINICIANDO\e[0m'
+  for i in 1
+  do
+	 echo "$i..."
+  done
+	 echo -e '\e[0;32m###########################################\e[0m'
+	 echo -e '\e[0;32m#             Bot reiniciado              #"\e[0m'
+	 echo -e '\e[0;32m###########################################"\e[0m'
+  done
 fi
 
 
 if [ "$1" = "kill" ]; then
-	clear
-	sudo tmux kill-session -t $session
-	sudo tmux kill-session -t $session2
+
+sudo screen -X -S running kill
+ 
+clear
+
+echo -e '\e[0;31mBot detenido.\e[0m'
+
+fi
+
+if [ "$1" = "rmlogs" ]; then
+
+sudo rm -Rf logs/
+  
+clear
+
+echo -e '\e[0;31mLogs eliminados.\e[0m'
+
 fi
 
 
 
+if [ "$1" = "" ]; then
+
+sudo service redis-server start
+sudo screen -X -S running kill
+clear
+
+while true
+do
+	lua bot.lua
+	echo -e '\e[0;31mCRASH DETECTADO\e[0m'
+	echo -e '\e[0;31mREINICIANDO\e[0m'
+for i in 1
+do
+	echo "$i..."
+done
+	echo -e '\e[0;32m###########################################\e[0m'
+	echo -e '\e[0;32m#             Bot reiniciado              #"\e[0m'
+	echo -e '\e[0;32m###########################################"\e[0m'
+done
+fi
