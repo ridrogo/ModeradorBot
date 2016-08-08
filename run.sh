@@ -108,7 +108,7 @@ done
 	echo -e '\e[0;32m###########################################"\e[0m'
 done
 fi
-session=GroupButlerEsp
+session=ModeradorBot
 session2=ScriptGban
 
 if [ "$1" = "" ]; then
