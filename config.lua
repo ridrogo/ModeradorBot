@@ -6,8 +6,8 @@ return {
 		owner = readowner,
 		admins = {
 			[123038464] = true,
-			[180791241] = true,
-			[180628032] = true,
+			[readadmin1] = true,
+			[readadmin2] = true,
 		}
 	},
 	log_chat = -1001057801239,
