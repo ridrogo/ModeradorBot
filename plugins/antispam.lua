@@ -1,8 +1,4 @@
 local triggers = {
---	'^https://telegram.me/(.*)$',
---    '^https://telegram.me/joinchat/(.*)$',
---	'^http://telegram.me/(.*)$',
---    '^http://telegram.me/joinchat/(.*)$',
             "[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm]%.[Mm][Ee]",
             "[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm]%.[Oo][Rr][Gg]%",
             "[Cc][Aa][Nn][Aa][Ll] @(.*)",
@@ -11,8 +7,7 @@ local triggers = {
 
 local action = function(msg, matches, blocks, ln)
  		
- 			local is_normal_group = false
-	   		if msg.chat.type == 'group' then is_normal_group = true end
+	if not(msg.chat.type == 'private') and is_mod(msg) then return end
  		
     if db:hget('bot:general', 'antispam') == 'on' then
 	local iduser = msg.from.id
