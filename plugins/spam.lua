@@ -1,29 +1,29 @@
 local action = function(msg, blocks, ln)
 
-	if (msg.chat.type == 'private') and not is_mod(msg) then return end
+if not (msg.chat.type == 'private') and is_mod(msg) then 
 
-	local text
-
-if blocks[1] == 'antispam' then
-		if blocks[2]:match('^(on)$') and blocks[2]:match('^(off)$') then
-			api.sendMessage(msg.chat.id, 'Estados disponibles: on/off')
+ if blocks[1] == 'spam' then
+		if not blocks[2]:match('^(enable)$') and not blocks[2]:match('^(disable)$') then
+			api.sendReply(msg, '*ERROR*\nDebe usarse de esta manera:\n`/spam enable|disable`', true)
 			return
 		end
 		local status = blocks[2]
-		local current = db:hget('chat:'..msg.chat.id..':settings', 'antispam')
+		local current = db:hget('chat:'..msg.chat.id..':settings', 'spam')
 		if current == status then
-			api.sendMessage(msg.chat.id, 'Modo Anti-Spam *ya está '..status..'*', true)
-		else 
-			db:hset('chat:'..msg.chat.id..':settings', 'antispam', status)
-			api.sendMessage(msg.chat.id, 'Modo Anti-Spam: *'..status..'*', true)
+			grep = status:gsub('^enable$', 'permitido'):gsub('^disable$', 'prohibido')
+			api.sendMessage(msg.chat.id, 'El spam ya estaba *'..grep..'*', true)		
+		else
+			db:hset('chat:'..msg.chat.id..':settings', 'spam', status)
+			grep = status:gsub('^enable$', 'permitido'):gsub('^disable$', 'prohibido')
+			api.sendMessage(msg.chat.id, 'Ahora el spam estará *'..grep..'*', true)
 		end
 	end
-
+  end
 end
 
 return {
 	action = action,
 	triggers = {
-	'^/(antispam) (%a%a%a?)$',
+	'^/(spam) (%a+)$',
 	}
 }

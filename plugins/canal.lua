@@ -28,9 +28,19 @@ local function do_keyboard_public()
 	return keyboard
 end
 
+local function do_keyboard_startme()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{
+    		{text = 'Debes iniciarme primero', url = 'https://telegram.me/'..bot.username}
+	    }
+    }
+    return keyboard
+end
 local action = function(msg, blocks, ln)
          if blocks[1] == 'links' then
-            api.sendMessage(msg.chat.id, '*Te he enviado los links por mensaje privado* ', true)
+--            api.sendKeyboard(msg.chat.id, do_keyboard_startme(), true) 
+            api.sendMessage(msg.chat.id, 'Se han enviado los links por chat privado, para verlos debes iniciar el bot aqui [Iniciame](https://telegram.me/'..bot.username..')', true)
             local message = make_text(msg.from.first_name:mEscape()) 
             api.sendMessage(msg.from.id, 'Aquí tienes algunos links de interés, quieres aparecer aqui?, contacta con @Webrom o @Webrom2', true)
             local keyboard = do_keyboard_public()

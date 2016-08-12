@@ -2,14 +2,15 @@ local function gsub_custom_welcome(msg, custom)
 	local name = msg.added.first_name:mEscape()
 	local name = name:gsub('%%', '')
 	local id = msg.added.id
+	local id2 = msg.chat.id
 	local username
 	local title = msg.chat.title:mEscape()
 	if msg.added.username then
 		username = '@'..msg.added.username:mEscape()
 	else
-		username = '(no username)'
+		username = '(sin usuario)'
 	end
-	custom = custom:gsub('$name', name):gsub('$username', username):gsub('$id', id):gsub('$title', title)
+	custom = custom:gsub('$name', name):gsub('$username', username):gsub('$id', id):gsub('$title', title):gsub('$id2', id2)
 	return custom
 end
 
@@ -68,11 +69,23 @@ local action = function(msg, blocks, ln)
 	--if the bot join the chat
 	if blocks[1] == 'botadded' then
 			api.sendMessage(msg.chat.id, '\nGracias por agregarme a tu grupo, ahora para configurarme correctamente tienes que darme admin (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer servirte en tu grupo 🔰\n', true)		
+		
+		if msg.added.username then
+			print('Usuario', msg.from.username, msg.from.id, msg.added.username, msg.added.id, msg.chat.title, msg.chat.id)
+			 local iduser = msg.from.id
+			 local name = msg.from.first_name
+			 local title = msg.chat.title
+			 if msg.from.username then name = name..' (@'..msg.from.username..')' end
+	    		api.sendAdmin(msg.chat.id, msg.chat.title)
+    		return
+	    end
+		
 		if db:hget('bot:general', 'adminmode') == 'on' and not is_bot_owner(msg) then
 			api.sendMessage(msg.chat.id, 'Admin mode is on: only the admin can add me to a new group')
 			api.leaveChat(msg.chat.id)
 			return
 		end
+		
 		if is_blocked_global(msg.adder.id) then
 			api.sendMessage(msg.chat.id, '_You ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') are in the blocked list_', true)
 			api.leaveChat(msg.chat.id)
@@ -102,13 +115,25 @@ local action = function(msg, blocks, ln)
 		end
 		
 		cross.remBanList(msg.chat.id, msg.added.id) --remove him from the banlist
-
-
+	
+if not(msg.chat.type == 'private') and not is_mod(msg) then
+    if db:hget('chat:'..msg.chat.id..':settings', 'bots') == 'disable' then       
+       	if msg.added.username and msg.added.id == bot.id then
+       		return nil
+			else
+       		local username = msg.added.username:lower()
+			if username:find('bot', -3) then
+			api.sendMessage(msg.chat.id, '_Tu ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') no puedes agregar bots_', true)
+			api.kickChatMember(msg.chat.id, msg.added.id)
+		end
+	end
+end
+end
 --		if msg.added.username then
 --			local username = msg.added.username:lower()
 --			if username:find('bot', -3) then return end
 --		end
-		
+
 		local text = get_welcome(msg, ln)
 		if text then
 			api.sendMessage(msg.chat.id, text, true)
@@ -120,6 +145,7 @@ local action = function(msg, blocks, ln)
 	--if the bot is removed from the chat
 	if blocks[1] == 'botremoved' then
 			api.sendMessage(msg.from.id, '\nEs una lástima que me hayas sacado, si cambias de opinión puedes volver a agregarme (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer volver a servirte en tu grupo 🔰\n', true)				
+	
 		--remove the group settings
 		cross.remGroup(msg.chat.id, true)
 		

@@ -5,13 +5,12 @@ return {
 	admin = {
 		owner = readowner,
 		admins = {
-			[123038464] = true,
 			[readadmin1] = true,
 			[readadmin2] = true,
 		}
 	},
-	log_chat = -1001057801239,
-	channel = '@GroupButlerEsp', --channel username with the '@'
+	log_chat = -1001061713377,
+	channel = 'readchannel', --channel username with the '@'
 	help_group = 'https://telegram.me/joinchat/CsanyT7Z5Wxk8eO_se0BCA', --group link, not username!
 	languages = 'languages.lua',
 	plugins = {
@@ -40,7 +39,7 @@ return {
 		'sendfiles.lua',
 		'killer.lua',
 		'beta.lua',
-	        'say.lua',
+	    'say.lua',
 		'italic.lua',
 		'contact.lua',
 		'talk.lua',
@@ -49,12 +48,13 @@ return {
 		'sera.lua',
 		'isbanned.lua',
 		'canal.lua',
---		'risbanned.lua'
 		'spam.lua',
 		'antispam.lua',
 --		'gbanner.lua',
 		'gban.lua',
 		'antibots.lua',
+		'antigroserias.lua',
+		'antigroserias2.lua',
 		'inline.lua'
 	},
 	available_languages = {

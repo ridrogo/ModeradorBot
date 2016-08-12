@@ -73,7 +73,9 @@ return {
                             .."`/banlist -` = limpia la lista de baneos.\n"
                             .."`/gban [por respuesta|id] (nuevo)` = Banea y bloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
                             .."`/ungban [por respuesta|id] (nuevo)` = Desbanea y desbloquea *Globalmente* (en todos los grupos donde el bot este activo y sea admin) un usuario.\n"
-                            .."`/antispam [on|off] (nuevo)` = Expulsa o banea a cualquiera que envíe un enlace del tipo (http://telegram.me o http://telegram.me/joinchat) además de tener un filtro de canales.\n"                            
+                            .."`/spam [enable|disable] (nuevo)` = Si esta deshabilitado _(disable)_, expulsa o banea a cualquiera que envíe un enlace del tipo (http://telegram.me o http://telegram.me/joinchat) además de tener un filtro de canales (No aplica administradores, puede advertir antes del baneo).\n"                            
+                            .."`/bots [enable|disable] (nuevo)` = Si esta deshabilitado _(disable)_, expulsa y bloquea a cualquier bot que sea agregado por miembros que no sean admins del grupo (No aplica administradores).\n"
+                            .."`/groseria [enable|disable] (nuevo)` = Si esta deshabilitado _(disable)_, expulsa y bloquea a cualquier miembro que use un vocabulario grosero o vulgar del grupo (No aplica administradores, puede advertir antes del baneo).\n"
                             .."\n*Nota*: tu puedes escribir algo despues del comando `/ban` (o despues del usuario, si estás baneando por usuario)."
                             .." Ese comentario será usado como motivo del ban."
                             .."\n*Nota 2*: Para usar el *Baneo Global* necesitas tener privilegios de desarrollador, contacta a [Webrom](http://telegram.me/Webrom) o [Webrom2](http://telegram.me/Webrom2) para que te los proporcione.",
@@ -152,6 +154,8 @@ return {
                     ..'`/echo [text]` : El bot te enviará un mensaje de texto (Disponible para cualquier usuario solo en privado)\n'
                     ..'`/info` : Ver informacion sobre el bot\n'
                     ..'`/group` : Ver el link de grupo de discusión\n'
+                    ..'`/isbanned [por respuesta|id] (nuevo)` : Saber si un usuario o ID está Globalmente baneada, envía mensaje privado al bot.\n'
+                    ..'`/tell [Grupo o usuario|por respuesta] (nuevo)` : Información del grupo o de algún usuario del grupo\n'
                     ..'`/c` <feedback> : envía un feedback al administrador del bot, podrías reportar un error si lo encuentras.\n'
                     ..'`/help` : Ver este mensaje.'
 		            ..'\n\nSi te gusta este bot, por favor deja tu voto [aqui](https://telegram.me/storebot?start=GroupButlerEsp_bot)',

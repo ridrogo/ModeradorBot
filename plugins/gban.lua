@@ -1,7 +1,7 @@
 local action = function(msg, blocks, ln)
  	
- 		if not (msg.chat.type == 'private') and not is_mod(msg) then return end
- 		
+	if not(msg.chat.type == 'private') and not is_mod(msg) then return end
+	
 if blocks[1] == "gban" then
 			local id
 			local name
@@ -75,17 +75,29 @@ if blocks[1] == "gban" then
 		end
 		api.sendReply(msg, text)
 	end
-	if blocks[1] == 'isgban' then
-		if not msg.reply then
-			api.sendReply(msg, 'Este comando necesita una respuesta, o el ID para funcionar')
-			return
+	if blocks[1] == "isgban" then
+	if blocks[2] then
+		local grep = io.popen("grep -o "..blocks[2].. " ./data/gbans")
+		local list = grep:read("*a")
+		if list == "" then
+		api.sendMessage(msg.chat.id, "_Esta ID no esta globalmente baneada_", true)
 		else
-			if is_blocked_global(msg.reply.from.id) then
-				api.sendReply(msg, 'yes')
-			else
-				api.sendReply(msg, 'no')
+			api.sendReply(msg, "La ID "..blocks[2].." está *globalmente baneada*", true)
+--			api.sendMessage(msg.chat.id, "*Demasiado seguro*\nSe encontraron las siguientes coincidencias:\n\n_"..list.."_", true)
 			end
 	end
+	
+ 	if not blocks[2] then
+		if msg.reply then
+			local grep = io.popen("grep "..msg.reply.from.id.. " ./data/gbans")
+		local list = grep:read("*a")
+		if list == "" then
+		api.sendReply(msg, "_Esta ID no esta globalmente baneada_", true)
+		else
+	        api.sendReply(msg, "La ID "..msg.reply.from.id.." está *globalmente baneada*", true)
+		end
+		end
+		end
 end
 end
 
@@ -97,5 +109,6 @@ return {
 	'^/(ungban) (%d+)$',
 	'^/(ungban)$',
 	'^/(isgban)$',
+	'^/(isgban) (%d+)$'
 	}
 }

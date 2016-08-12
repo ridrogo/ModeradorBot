@@ -213,7 +213,7 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 							--if bugs
 							if not success then
 								print(msg.text, result)
-								api.sendReply(msg, '*This is a bug!*\nPlease report the problem with `"/c"` command :)', true)
+							--	api.sendReply(msg, '*This is a bug!*\nPlease report the problem with `"/c"` command :)', true)
 								save_log('errors', result, msg.from.id or false, msg.chat.id or false, msg.text or false)
           						api.sendAdmin('An #error occurred.\n'..result..'\n'..msg.lang..'\n'..msg.text)
 								return
