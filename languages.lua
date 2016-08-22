@@ -167,7 +167,7 @@ return {
                    ..'\nPara obtener mas información, puedes ingresar al canal público [Group Butler Español](https://telegram.me/GroupButlerEsp)\n'
                    ..'\nSi deseas usarme, por favor agrega a mi dueño [Webrom](http://telegram.me/Webrom) o [Webrom2](http://telegram.me/Webrom2) él me configurará en tu grupo.\n',
             group_success = 'ℹ️ Te he enviado un mensaje por privado, *verificalo*.',
-            group_not_success = '_Mensajeame para ayudarte_',
+            group_not_success = '_Toca abajo para iniciar el bot y ver todos los comandos_',
             initial = 'Cambia su *permiso* para ver los comandos:',
             kb_header = 'Presiona un botón para ver los comandos *relacionados*'
         },
@@ -280,12 +280,12 @@ return {
                 legenda = '✅ = _enabled/allowed_\n🚫 = _disabled/not allowed_\n👥 = _sent in group (always for admins)_\n👤 = _sent in private_'
             },
             char = {
-                arab_kick = 'Senders of arab messages will be kicked',
-                arab_ban = 'Senders of arab messages will be banned',
-                arab_allow = 'Arab language allowed',
+                arab_kick = 'Los que envien mensajes en àrabe serán expulsados',
+                arab_ban = 'Los que envien mensajes en àrabe serán baneados',
+                arab_allow = 'Árabe permitido',
                 rtl_kick = 'The use of the RTL character will lead to a kick',
                 rtl_ban = 'The use of the RTL character will lead to a ban',
-                rtl_allow = 'RTL character allowed',
+                rtl_allow = 'RTL permitido',
             },
             broken_group = 'There are no settings saved for this group.\nPlease run /initgroup to solve the problem :)',
             Rules = 'Reglas',
@@ -320,7 +320,7 @@ return {
         },
         setlang = {
             list = '*Idiomas disponibles:*',
-            success = '*Nuevo idima cambiado:* &&&1',
+            success = '*Nuevo idioma cambiado:* &&&1',
             error = 'Language not yet supported'
         },
 		banhammer = {
@@ -348,31 +348,31 @@ return {
             changed_plug = 'El numero maximo de mensajes que pueden ser enviados en 5 segundos por &&&1 a &&&2',
             enabled = 'Antiflood activado',
             disabled = 'Antiflood desactivado',
-            kick = 'Los flooders seran expulsados',
-            ban = 'Los flooders seran baneados',
+            kick = 'Los flooders serán expulsados',
+            ban = 'Los flooders serán baneados',
             changed_cross = '&&&1 -> &&&2',
-            text = 'Texts',
-            image = 'Images',
+            text = 'Textos',
+            image = 'Imágenes',
             sticker = 'Stickers',
             gif = 'Gif',
             video = 'Videos',
-            sent = '_I\'ve sent you the anti-flood menu in private_',
-            ignored = '[&&&1] will be ignored by the anti-flood',
-            not_ignored = '[&&&1] won\'t be ignored by the anti-flood',
-            number_cb = 'Current sensitivity. Tap on the + or the -',
-            header = 'You can manage the group flood settings from here.\n'
-                ..'\n*1st row*\n'
-                ..'• *ON/OFF*: the current status of the anti-flood\n'
-                ..'• *Kick/Ban*: what to do when someone is flooding\n'
-                ..'\n*2nd row*\n'
-                ..'• you can use *+/-* to change the current sensitivity of the antiflood system\n'
-                ..'• the number it\'s the max number of messages that can be sent in _5 seconds_\n'
-                ..'• max value: _25_ - min value: _4_\n'
-                ..'\n*3rd row* and below\n'
-                ..'You can set some exceptions for the antiflood:\n'
-                ..'• ✅: the media will be ignored by the anti-flood\n'
-                ..'• ❌: the media won\'t be ignored by the anti-flood\n'
-                ..'• *Note*: in "_texts_" are included all the other types of media (file, audio...)'
+            sent = '_Te he enviado un mensaje por privado_',
+            ignored = '[&&&1] será ignorado por el sistema anti-flood',
+            not_ignored = '[&&&1] no será ignorado por el sistema anti-flood',
+            number_cb = 'Actual valor. C´qambialo con + o -',
+            header = 'Puedes administrar los ajustes anti-flood para tu grupo desde acá.\n'
+                ..'\n*1era parte*\n'
+                ..'• *ON/OFF*: el estado actual de anti-flood\n'
+                ..'• *Kick/Ban*: que le pasará al flooder (expulsión o baneo)\n'
+                ..'\n*2nda parte*\n'
+                ..'• puedes usar *+/-* para cambiar el valor del sistema antiflood\n'
+                ..'• el valor es el número máximo de mensajes que pueden ser enviados en _5 segundos_\n'
+                ..'• valor máximo: _25_ - valor mínimo: _4_\n'
+                ..'\n*3era parte* y final\n'
+                ..'Puedes seleccionar algunas excepciones para el sistema anti-flood:\n'
+                ..'• ✅: esa multimedia será ignorada por el sistema anti-flood\n'
+                ..'• ❌: esa multimedia no será ignorada por el sistema anti-flood\n'
+                ..'• *Note*: en "_textos_" está incluido todos los demás tipos de multimedia (archivos, audios...)'
         },
         mediasettings = {
 			warn = 'Este tipo de multimedia *no esta permitida* en este grupo.\n_La proxima vez_ seras baneado o expulsado',
@@ -388,9 +388,9 @@ return {
             arab_kicked = '&&&1 *expulsado*: mensaje arabe detectado',
             rtl_banned = '&&&1 *banned*: rtl character in names/messages not allowed!',
             arab_banned = '&&&1 *banned*: arab message detected!',
-            flood_motivation = 'Banned for flood',
-            media_motivation = 'Sent a forbidden media',
-            first_warn = 'This type of media is *not allowed* in this chat.'
+            flood_motivation = 'Baneado por flood',
+            media_motivation = 'Envía multimedia prohibida',
+            first_warn = 'Este tipo de multimedia *no esta permitida* en este grupo.\n_La próxima vez_ podrías ser baneado o expulsado',
         },
         kick_errors = {
             [1] = 'No soy administrador, no puedo expulsar miembros',

@@ -30,9 +30,7 @@ local action = function(msg, blocks, ln)
         return
     end
     
-    if not is_mod(msg) then
-        return
-    end
+    if not is_mod(msg) then return end
     
     if blocks[1] == 'disable' then
         
@@ -75,6 +73,9 @@ local action = function(msg, blocks, ln)
         elseif input == 'spam' then
 --            mystat('/disable report') --save stats
             disable_set('Spam', msg, ln)
+        elseif input == 'plugins' then
+--            mystat('/disable report') --save stats
+            disable_set('Plugins', msg, ln)
         else
             api.sendReply(msg, make_text(lang[ln].settings.disable.wrong_input), true)
         end
@@ -122,6 +123,9 @@ end
         elseif input == 'spam' then
 --            mystat('/enable report') --save stats
             enable_set('Spam', msg, ln)
+        elseif input == 'plugins' then
+--            mystat('/disable report') --save stats
+            enable_set('Plugins', msg, ln)
         else
             api.sendReply(msg, make_text(lang[ln].settings.enable.wrong_input), true)
         end

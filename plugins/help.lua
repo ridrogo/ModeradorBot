@@ -48,7 +48,7 @@ local function make_keyboard(mod, mod_current_position)
 	return keyboard
 end
 
-local function do_keybaord_credits()
+local function do_keyboard_credits()
 	local keyboard = {}
     keyboard.inline_keyboard = {
     	{
@@ -96,6 +96,7 @@ end
 
 local action = function(msg, blocks, ln)
     -- save stats
+    local keyboard = make_keyboard()
     if blocks[1] == 'start' then
         db:hset('bot:users', msg.from.id, 'xx')
         db:hincrby('bot:general', 'users', 1)
@@ -121,11 +122,26 @@ local action = function(msg, blocks, ln)
             api.sendKeyboard(msg.chat.id, lang[ln].help.group_not_success, do_keyboard_startme(), true)
         end
     end
+    local keyboard = make_keyboard()
+    if blocks[1] == 'startme' then
+        if msg.chat.type == 'private' then
+            local message = make_text(lang[ln].help.private, msg.from.first_name:mEscape())
+            local keyboard = do_keyboard_private()
+            api.sendKeyboard(msg.from.id, message, keyboard, true)
+            return
+        end
+        local res = api.sendKeyboard(msg.from.id, 'Bienvenido a la pantalla de inicio, elige un  *rol* para ver los comandos disponibles:', keyboard, true)
+        if res then
+            api.sendMessage(msg.chat.id, lang[ln].help.group_success, true)
+        else
+            api.sendKeyboard(msg.chat.id, lang[ln].help.group_not_success, do_keyboard_startme(), true)
+        end
+    end
     if msg.cb then
         local query = blocks[1]
         local text
         if query == 'info_button' then
-            keyboard = do_keybaord_credits()
+            keyboard = do_keyboard_credits()
 		    api.editMessageText(msg.chat.id, msg.message_id, lang[ln].credits, keyboard, true)
 		    return
 		end
@@ -175,6 +191,7 @@ return {
 	triggers = {
 	    '^/(start)$',
 	    '^/(help)$',
+	    '^/(startme)$',
 	    '^###cb:!(user)',
 	    '^###cb:!(info_button)',
 	    '^###cb:!(mod)',

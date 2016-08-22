@@ -41,8 +41,6 @@ bot_init = function(on_reload) -- The function run when the bot is started or re
 	print(clr.blue..'Leyendo tabla de funciones...' ..clr.reset)
 	api = require('methods')
 	
-	tot = 0
-	
 	current_m = 0
 	last_m = 0
 	
@@ -53,17 +51,50 @@ bot_init = function(on_reload) -- The function run when the bot is started or re
 	bot = bot.result
 
 	plugins = {} -- Load plugins.
-	print('Loading plugins...')
-	for i,v in ipairs(config.plugins) do
-		local p = dofile('plugins/'..v)
-		table.insert(plugins, p)
+	
+		if config.bot_settings.plugins_esenciales then
+		for i,v in ipairs(config.plugins_esenciales) do
+			local p = dofile('plugins/'..v)
+			print(clr.red..'Leyendo plugin...'..clr.reset, v)
+			table.insert(plugins, p)
+		end
 	end
-	print(clr.red..'Plugins loaded:', #plugins)
-
-	print('\n'..clr.blue..'BOT RUNNING:'..clr.reset, clr.red..'[@'..bot.username .. '] [' .. bot.first_name ..'] ['..bot.id..']'..clr.reset..'\n')
+	
+	if config.bot_settings.plugins_opcionales then
+		for i,v in ipairs(config.plugins_opcionales) do
+			local p = dofile('plugins/'..v)
+			print(clr.red..'Leyendo plugin...'..clr.reset, v)
+			table.insert(plugins, p)
+		end
+	end
+	
+	if config.bot_settings.plugins_test then
+		for i,v in ipairs(config.plugins_test) do
+			local p = dofile('plugins/'..v)
+			print(clr.red..'Leyendo plugin...'..clr.reset, v)
+			table.insert(plugins, p)
+		end
+	end
+	
+--	print('Loading plugins...')
+--	for i,v in ipairs(config.plugins) do
+--		local p = dofile('plugins/'..v)
+--		print(clr.red..'Leyendo plugin...'..clr.reset, v)
+--		table.insert(plugins, p)
+--	end
+--	print(clr.red..'Plugins loaded:', #plugins)
+	
+	if config.bot_settings.multipurpose_mode then
+		for i,v in ipairs(config.multipurpose_plugins) do
+			local p = dofile('plugins/multipurpose/'..v)
+			table.insert(plugins, p)
+		end
+	end
+	
+	print('\n'..clr.blue..'BOT INICIADO:'..clr.reset, clr.red..'[@'..bot.username .. '] [' .. bot.first_name ..'] ['..bot.id..']'..clr.reset..'\n')
 	if not on_reload then
 		db:hincrby('bot:general', 'starts', 1)
-		api.sendAdmin('*Bot started!*\n_'..os.date('On %A, %d %B %Y\nAt %X')..'_\n'..#plugins..' plugins loaded', true)
+		api.sendAdmin('*Bot iniciado*\n'..os.date('Día %A, %d %B %Y\nHora %X')..'\n'..#plugins..' plugins leídos', true)
 	end
 	
 	-- Generate a random seed and "pop" the first random number. :)
@@ -306,6 +337,23 @@ local function media_to_msg(msg)
 		if not msg.url then msg.media = false end --if the entity it's not an url (username/bot command), set msg.media as false
 	end
 	
+--[[	--cehck entities for links/text mentions
+	if msg.entities then
+		for i,entity in pairs(msg.entities) do
+			if entity.type == 'text_mention' then
+				msg.mention_id = entity.user.id
+			end
+			if entity.type == 'url' or entity.type == 'text_link' then
+				if msg.text:match('[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm]%.[Mm][Ee]') then
+					msg.media_type = 'TGlink'
+				else
+					msg.media_type = 'link'
+				end
+				msg.media = true
+			end
+		end
+	end]]
+
 	if msg.reply_to_message then
 		msg.reply = msg.reply_to_message
 	end

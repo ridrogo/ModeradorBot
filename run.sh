@@ -30,7 +30,7 @@ if [ "$1" = "config" ]; then
     clear
     echo -e '\e[0;34mPor favor, ingresa tu apikey\e[0m'
     read apikey
-    echo -e '\e[0;34mPor favor, ingresa tu ID Owner (Es tu ID Telegram o el ID de la apikey de tu Bot)\e[0m'
+    echo -e '\e[0;34mPor favor, ingresa tu ID Owner (Es el ID de la apikey de tu Bot)\e[0m'
     read id
     echo -e '\e[0;34mPor favor, ingresa tu ID Admin1 (Es tu ID Telegram o cualquier user que desees hacer Admin)\e[0m'
     read id1
@@ -41,7 +41,7 @@ if [ "$1" = "config" ]; then
     sudo rm -f config.lua
     wget https://raw.githubusercontent.com/ridrogo/ModeradorBot/master/config.lua
     clear
-    perl -pi -e "s[readapikey][$apikey]g" data/key
+    perl -pi -e "s[readapikey][$apikey]g" config.lua
     perl -pi -e "s[readowner][$id]g" config.lua
     perl -pi -e "s[readadmin1][$id1]g" config.lua
     perl -pi -e "s[readadmin2][$id2]g" config.lua
@@ -54,14 +54,29 @@ fi
 
 session=GroupButlerEsp
 session2=ScriptGban
+session3=RedisServer
 
 if [ "$1" = "" ]; then
-	clear
-	sudo tmux kill-session -t $session
-	clear
+    sudo tmux new-session -s "$session3" -d 'service redis-server start'
 	sudo tmux new-session -s "$session" -d 'lua bot.lua'
 	sudo tmux attach -t "$session"
+	clear
+	sudo tmux kill-session -t $session
+clear
 
+while true
+do
+    lua bot.lua
+	echo -e '\e[0;31mCRASH DETECTADO\e[0m'
+	echo -e '\e[0;31mREINICIANDO\e[0m'
+for i in 1
+do
+	echo "$i..."
+done
+	echo -e '\e[0;32m###########################################\e[0m'
+	echo -e '\e[0;32m#             Bot reiniciado              #"\e[0m'
+	echo -e '\e[0;32m###########################################"\e[0m'
+done
 fi
 
 if [ "$1" = "attach" ]; then

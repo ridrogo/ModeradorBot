@@ -37,14 +37,22 @@ local function do_keyboard_startme()
     }
     return keyboard
 end
+
 local action = function(msg, blocks, ln)
-         if blocks[1] == 'links' then
---            api.sendKeyboard(msg.chat.id, do_keyboard_startme(), true) 
-            api.sendMessage(msg.chat.id, 'Se han enviado los links por chat privado, para verlos debes iniciar el bot aqui [Iniciame](https://telegram.me/'..bot.username..')', true)
-            local message = make_text(msg.from.first_name:mEscape()) 
-            api.sendMessage(msg.from.id, 'Aquí tienes algunos links de interés, quieres aparecer aqui?, contacta con @Webrom o @Webrom2', true)
             local keyboard = do_keyboard_public()
-            api.sendKeyboard(msg.from.id, message, keyboard, true)
+            if blocks[1] == 'links' then
+            if msg.chat.type == 'private' then
+                local message = make_text(lang[ln].help.private, msg.from.first_name:mEscape())
+                local keyboard = do_keyboard_public()
+                api.sendKeyboard(msg.from.id, message, keyboard, true)
+                return
+            end
+            local res = api.sendKeyboard(msg.from.id, 'Aquí tienes algunos links de interés, quieres aparecer aqui?, contacta con @Webrom o @Webrom2', keyboard, true)
+            if res then
+                api.sendMessage(msg.chat.id, 'Se han enviado los links por chat privado', true)
+            else
+                api.sendKeyboard(msg.chat.id, lang[ln].help.group_not_success, do_keyboard_startme(), true)
+            end
         end
         return
     end

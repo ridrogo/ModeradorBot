@@ -30,7 +30,7 @@ if [ "$1" = "config" ]; then
     clear
     echo -e '\e[0;34mPor favor, ingresa tu apikey\e[0m'
     read apikey
-    echo -e '\e[0;34mPor favor, ingresa tu ID Owner (Es tu ID Telegram o el ID de la apikey de tu Bot)\e[0m'
+    echo -e '\e[0;34mPor favor, ingresa tu ID Owner (Es el ID de la apikey de tu Bot)\e[0m'
     read id
     echo -e '\e[0;34mPor favor, ingresa tu ID Admin1 (Es tu ID Telegram o cualquier user que desees hacer Admin)\e[0m'
     read id1
@@ -41,7 +41,7 @@ if [ "$1" = "config" ]; then
     sudo rm -f config.lua
     wget https://raw.githubusercontent.com/ridrogo/ModeradorBot/master/config.lua
     clear
-    perl -pi -e "s[readapikey][$apikey]g" data/key
+    perl -pi -e "s[readapikey][$apikey]g" config.lua
     perl -pi -e "s[readowner][$id]g" config.lua
     perl -pi -e "s[readadmin1][$id1]g" config.lua
     perl -pi -e "s[readadmin2][$id2]g" config.lua

@@ -69,29 +69,27 @@ local action = function(msg, blocks, ln)
 	--if the bot join the chat
 	if blocks[1] == 'botadded' then
 			api.sendMessage(msg.chat.id, '\nGracias por agregarme a tu grupo, ahora para configurarme correctamente tienes que darme admin (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer servirte en tu grupo 🔰\n', true)		
-		
-		if msg.added.username then
+
+		if msg.added.username and is_mod(msg) then
 			print('Usuario', msg.from.username, msg.from.id, msg.added.username, msg.added.id, msg.chat.title, msg.chat.id)
-			 local iduser = msg.from.id
-			 local name = msg.from.first_name
-			 local title = msg.chat.title
-			 if msg.from.username then name = name..' (@'..msg.from.username..')' end
-	    		api.sendAdmin(msg.chat.id, msg.chat.title)
-    		return
-	    end
-		
-		if db:hget('bot:general', 'adminmode') == 'on' and not is_bot_owner(msg) then
-			api.sendMessage(msg.chat.id, 'Admin mode is on: only the admin can add me to a new group')
+			local id = msg.from.id
+			local name = msg.from.first_name
+    		if msg.from.username then name = name..' (@'..msg.from.username..')' end
+			local title = msg.chat.title
+			local id2 = msg.chat.id
+			 	api.sendAdmin('`🔰📋 Infomacion del usuario que agrega el BOT:`\n\n*👤 Usuario y Alias:* '..name..'\n*👤 Usuario 🆔* '..id..'\n*🔹 Nombre del grupo:* '..title..'\n*🔸Grupo 🆔* '..id2..'\n', true)
+			else
+			api.sendMessage(msg.chat.id, '_Tú ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..')´ , no puedes agregarme a este grupo, sólo el Creador del grupo puede agregarme y los Admins para testeo_', true)
 			api.leaveChat(msg.chat.id)
 			return
 		end
-		
+
 		if is_blocked_global(msg.adder.id) then
-			api.sendMessage(msg.chat.id, '_You ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') are in the blocked list_', true)
+			api.sendMessage(msg.chat.id, '_Tú ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') estás bloqueado Globalmente, no puedes usar este Bot_', true)
 			api.leaveChat(msg.chat.id)
 			return
 		end
-		
+
 		cross.initGroup(msg.chat.id)
 	end
 	
@@ -116,15 +114,28 @@ local action = function(msg, blocks, ln)
 		
 		cross.remBanList(msg.chat.id, msg.added.id) --remove him from the banlist
 	
+--[[if not(msg.chat.type == 'private') and not is_mod(msg) then
+if db:hget('chat:'..msg.chat.id..':settings', 'bots') == 'disable' then	
+    	if (msg.new_chat_member.id) == (bot.id) then
+--        api.kickChatMember(msg.chat.id, msg.new_chat_member)
+			else --if added by a not-mod, ban the user
+				local res = api.banUser(msg.chat.id, msg.new_chat_member.id, false, ln)
+				if res then
+			api.sendMessage(msg.chat.id, '_Tu ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') no puedes agregar bots_', true)				end
+			end
+		end
+end]]
+
 if not(msg.chat.type == 'private') and not is_mod(msg) then
-    if db:hget('chat:'..msg.chat.id..':settings', 'bots') == 'disable' then       
-       	if msg.added.username and msg.added.id == bot.id then
-       		return nil
-			else
+    if db:hget('chat:'..msg.chat.id..':settings', 'bots') == 'disable' and not msg.added.last_name then       
+       	if msg.added.username == bot.id then
+       		else 
        		local username = msg.added.username:lower()
 			if username:find('bot', -3) then
-			api.sendMessage(msg.chat.id, '_Tu ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') no puedes agregar bots_', true)
-			api.kickChatMember(msg.chat.id, msg.added.id)
+				local res = api.banUser(msg.chat.id, msg.added.id, false, ln)
+				if res then
+			api.sendMessage(msg.chat.id, '_Tu ('..msg.adder.first_name:mEscape()..', '..msg.adder.id..') no puedes agregar bots_', true)				
+			return end
 		end
 	end
 end
@@ -146,6 +157,17 @@ end
 	if blocks[1] == 'botremoved' then
 			api.sendMessage(msg.from.id, '\nEs una lástima que me hayas sacado, si cambias de opinión puedes volver a agregarme (revisa [aqui](http://telegram.me/GroupButlerEsp/1)) y contacta con @Webrom o @Webrom2, séra un placer volver a servirte en tu grupo 🔰\n', true)				
 	
+			if msg.removed.username then
+			print('Usuario', msg.from.username, msg.from.id, msg.removed.username, msg.removed.id, msg.chat.title, msg.chat.id)
+			local id = msg.from.id
+			local name = msg.from.first_name
+    		if msg.from.username then name = name..' (@'..msg.from.username..')' end
+			local title = msg.chat.title
+			local id2 = msg.chat.id
+			 	api.sendAdmin('`🔰📋 Infomacion del usuario que elimina el BOT:`\n\n*👤 Usuario y Alias:* '..name..'\n*👤 Usuario 🆔* '..id..'\n*🔹 Nombre del grupo:* '..title..'\n*🔸Grupo 🆔* '..id2..'\n', true)
+    		return
+	    end
+	    
 		--remove the group settings
 		cross.remGroup(msg.chat.id, true)
 		
@@ -154,13 +176,12 @@ end
 	end
 	
 	if blocks[1] == 'removed' then
-	if msg.left_chat_member then
-		if tonumber(msg.left_chat_member.id) then
-			name = msg.from.first_name
-			title = msg.chat.title
+		if msg.removed.username then
+			local name = msg.from.first_name
+			local title = msg.chat.title
 			api.sendMessage(msg.from.id, '\n' ..name.. ', es una lástima que te hayas ido de ' ..title.. ', si cambias de opinión y quieres volver a ingresar, solo dile a @Webrom o @Webrom2 que te ayude, gracias por participar. 🔰\n', true)		
+			return
 		end	
-	end
 		if msg.remover and msg.removed then
 			if msg.remover.id ~= msg.removed.id and msg.remover.id ~= bot.id then
 				local action

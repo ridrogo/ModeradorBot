@@ -1,5 +1,52 @@
 -- utilities.lua
 -- Functions shared among plugins.
+-- Plugins
+function disable_plugin(msg, blocks)
+local var = false
+for k,disable in pairs(config.plugins_opcionales) do
+plugin = disable:gsub('.lua', '')
+	if blocks[3] == plugin then
+		os.execute('sed -i "/'..config.plugins_opcionales[k]..'/d" ./config.lua')
+		var = true
+	end
+end
+return var
+end
+
+function plugin_exist(msg, blocks)
+local var = false
+for k,exist in pairs(config.plugins_opcionales) do
+plugin = exist:gsub('.lua', '')
+	if blocks[3] == plugin then
+		var = true
+	end
+end
+return var
+end
+
+
+function enable_plugin(msg, blocks)
+local var = false
+plugin_existing = io.open("./plugins/"..blocks[3]..".lua","r")
+	if plugin_existing then
+	 if plugin_exist(msg, blocks) == false then
+		os.execute('perl -pi -e "s[plugins_opcionales = \\{][plugins_opcionales = \\{\n\t\t\\"'..blocks[3]..'.lua\\",]g" ./config.lua')
+		var = true
+	 end
+	end
+return var
+end
+
+function load_plugins()
+local text = ''
+	for k,v in pairs(config.plugins_opcionales) do
+		if (v:match(".lua$")) then
+			list = v:gsub('.lua', '')
+			text = text.."► "..list..'\n'
+		end
+	end
+return text
+end
 
 function get_word(s, i) -- get the indexed word in a string
 
@@ -58,6 +105,27 @@ function is_bot_admin(chat_id)
 	else
 		return true
 	end
+end
+
+function cache_adminlist(chat_id)
+	local res, code = api.getChatAdministrators(chat_id)
+	if not res then
+		return false, code
+	end
+	local hash = 'cache:chat:'..chat_id..':admins'
+	for _, admin in pairs(res.result) do
+		db:sadd(hash, admin.user.id)
+	end
+--	db:expire(hash, config.bot_settings.cache_time.adminlist)
+	return true
+end
+
+function is_admin_cached(msg)
+	local hash = 'cache:chat:'..msg.chat.id..':admins'
+	if not db:exists(hash) then
+		cache_adminlist(msg.chat.id, res)
+	end
+	return db:sismember(hash, msg.from.id)
 end
 
 function is_mod(msg)
@@ -120,6 +188,27 @@ function is_locked(msg, cmd)
   		return true
   	end
   	return false
+end
+
+function is_silentmode_on(chat_id)
+	local hash = 'chat:'..chat_id..':settings'
+	local res = db:hget(hash, 'Silent')
+	if res and res == 'on' then
+		return true
+	else
+		return false
+	end
+end
+
+function sendStartMe(msg, ln)
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{
+    		{text = 'Start me', url = 'https://telegram.me/'..bot.username}
+	    }
+    }
+	api.sendKeyboard(msg.chat.id, lang[ln].help.group_not_success, keyboard, true)
+	    return keyboard
 end
 
 function is_banned(chat_id, user_id)
@@ -250,8 +339,8 @@ function save_log(action, arg1, arg2, arg3, arg4)
     elseif action == 'errors' then
     	--error, from, chat, text
     	local path = "./logs/errors.txt"
-    	local text = os.date('[%A, %d %B %Y at %X]')..'\nERROR: '..arg1
-    	if arg2 then
+		local text = os.date('[%A, %d %B %Y at %X]')..'\n'..arg1..'\n\n'
+	   	if arg2 then
     		text = text..'\nFROM: '..arg2
     	end
  		if arg3 then
@@ -505,6 +594,14 @@ function telegram_file_link(res)
 	return "https://api.telegram.org/file/bot"..config.bot_api_key.."/"..res.result.file_path
 end
 
+function is_info_message_key(key)
+    if key == 'Extra' or key == 'Rules' then
+        return true
+    else
+        return false
+    end
+end
+
 ----------------------- specific cross-plugins functions---------------------
 
 local function getAbout(chat_id, ln)
@@ -586,23 +683,27 @@ local function getSettings(chat_id, ln)
     local message = make_text(lang[ln].bonus.settings_header, ln)
         
     --build the message
-    for key,val in pairs(settings) do
+    for key, default in pairs(config.chat_settings['settings']) do
         
-        local yes_icon, no_icon = '🚫', '✅'
-        if cross.is_info_message_key(key) then
-        	yes_icon, no_icon = '👤', '👥'
+        local off_icon, on_icon = '🚫', '✅'
+        if is_info_message_key(key) then
+        	off_icon, on_icon = '👤', '👥'
         end
         
+        local db_val = db:hget(hash, key)
+        if not db_val then db_val = default end
+        
         local text
-        if val == 'yes' then
-            text = '`'..lang[ln].settings[key]..'`: '..yes_icon..'\n'
+        if db_val == 'off' then
+            text = '`'..lang[ln].settings[key]..'`: '..off_icon..'\n'
         else
-            text = '`'..lang[ln].settings[key]..'`: '..no_icon..'\n'
+            text = '`'..lang[ln].settings[key]..'`: '..on_icon..'\n'
         end
         message = message..text --concatenete the text
     end
-    
-    --build the "welcome" line
+
+
+  --build the "welcome" line
     hash = 'chat:'..chat_id..':welcome'
     local type = db:hget(hash, 'type')
     if type == 'composed' then

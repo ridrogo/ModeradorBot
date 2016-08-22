@@ -137,12 +137,12 @@ local action = function(msg, blocks, ln)
 	if blocks[1] == 'init' then
 		db:bgsave()
 		bot_init(true)
-		api.sendReply(msg, '*Bot reloaded!*', true)
+		api.sendReply(msg, '*Bot reiniciado!*', true)
 	end
 	if blocks[1] == 'stop' then
 		db:bgsave()
 		is_started = false
-		api.sendReply(msg, '*Stopping bot*', true)
+		api.sendReply(msg, '*Parando Bot*', true)
 	end
 	if blocks[1] == 'backup' then
 		db:bgsave()

@@ -1,6 +1,6 @@
 local action = function(msg, blocks, ln)
  	
-	if not(msg.chat.type == 'private') and not is_mod(msg) then return end
+	if not(msg.chat.type == 'private') and not is_owner(msg) then return end
 	
 if blocks[1] == "gban" then
 			local id
@@ -67,14 +67,15 @@ if blocks[1] == "gban" then
 		local response = db:srem('bot:blocked', id)
 		local text
 		if response == 1 then
-			text = '\n' ..name.. ', el ID ' ..id.. ' ha sido Desbloqueado y Desbaneado Globalmente por @' ..bot.username.. ', si fue un error, disculpa las molestias, gracias. 🔰\n'							
+			make_text = '\n' ..name.. ', el ID ' ..id.. ' ha sido Desbloqueado y Desbaneado Globalmente por (@' ..bot.username.. '), si fue un error, disculpa las molestias, gracias. 🔰\n'							
 --			text = id..' Has sido Desbloqueado y desbaneado Globalmente'
 		else
-			text = '\n' ..name.. ', el ID ' ..id.. ' ya has sido Desbloqueado y Desbaneado Globalmente por @' ..bot.username.. ', gracias. 🔰\n'
+			make_text = '\n' ..name.. ', el ID ' ..id.. ' ya ha sido Desbloqueado y Desbaneado Globalmente por (@' ..bot.username.. '), gracias. 🔰\n'
 --			text = id..' Ya estás Desbloqueado y desbaneado Globalmente'
 		end
-		api.sendReply(msg, text)
+		api.sendReply(msg, make_text)
 	end
+
 	if blocks[1] == "isgban" then
 	if blocks[2] then
 		local grep = io.popen("grep -o "..blocks[2].. " ./data/gbans")

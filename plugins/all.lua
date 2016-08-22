@@ -214,13 +214,13 @@ local function doKeyboard_menu(chat_id, ln)
     local settings = db:hgetall('chat:'..chat_id..':settings')
     
     local settings_section = adminsettings_table(settings)
-    keyboad = insert_settings_section(keyboard, settings_section, chat_id, ln)
+    keyboard = insert_settings_section(keyboard, settings_section, chat_id, ln)
     
     settings_section = usersettings_table(settings)
-    keyboad = insert_settings_section(keyboard, settings_section, chat_id, ln)
+    keyboard = insert_settings_section(keyboard, settings_section, chat_id, ln)
     
     settings_section = charsettings_table(chat_id)
-    keyboad = insert_settings_section(keyboard, settings_section, chat_id, ln)
+    keyboard = insert_settings_section(keyboard, settings_section, chat_id, ln)
     
     --warn
     local max = (db:hget('chat:'..chat_id..':warnsettings', 'max')) or 3

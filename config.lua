@@ -2,6 +2,7 @@ return {
 	bot_api_key = io.open("./data/key","r"):read(),
 	version = '3.1', -- /aupdate for v3.1
 	testing_mode = false,
+	cmd = '^[/!#]',
 	admin = {
 		owner = readowner,
 		admins = {
@@ -9,13 +10,78 @@ return {
 			[readadmin2] = true,
 		}
 	},
-	log_chat = -1001061713377,
+	log_chat = -1001061713388,
+	bot_settings = {
+		cache_time = {
+			adminlist = 18000, --5 hours (18000s)
+		},
+		testing_mode = true,
+		multipurpose_mode = true,
+		plugins_esenciales = true,
+		plugins_opcionales = true,
+		plugins_test = false,
+		notify_bug = true,
+		log_api_errors = false
+	},
 	channel = 'readchannel', --channel username with the '@'
 	help_group = 'https://telegram.me/joinchat/CsanyT7Z5Wxk8eO_se0BCA', --group link, not username!
 	languages = 'languages.lua',
-	plugins = {
-		'onmessage.lua', --THIS HAVE TO BE THE FIRST: IF AN USER IS SPAMMING/IS BLOCKED, THE BOT WON'T GO THROUGH PLUGINS
+	plugins_esenciales = {
+		'onmessage.lua',
+		'plugins.lua',
+		'configure.lua',
 		'all.lua',
+		'admin.lua',
+		'banhammer.lua',
+		'gban.lua',
+		'users.lua',
+		'help.lua',
+		'rules.lua',
+		'settings.lua',
+		'about.lua',
+		'flag.lua',
+		'service.lua',
+		'links.lua',
+		'warn.lua',
+		'setlang.lua',
+		'floodmanager.lua',
+		'mediasettings.lua',
+		'private.lua',
+		'test.lua'
+	},
+	plugins_opcionales = {
+		"calculator.lua",
+		"test.lua",
+		"beta.lua",
+		'chatmodules.lua',
+		'faq.lua',
+		'caracola.lua',
+		'comprimirlink.lua',
+		'sendfiles.lua',
+		'killer.lua',
+		'say.lua',
+		'contact.lua',
+		'talk.lua',
+		'error.lua',
+		'saludador.lua',
+		'sera.lua',
+		'isbanned.lua',
+		'publi.lua',
+		'antigroserias.lua',
+		'antispam.lua',
+		'codes.lua',
+		'extra.lua'
+	},
+	plugins_test = {
+		'gbanner.lua',
+		'inline.lua',
+		'plugin2.lua',
+	},
+--[[	plugins = {
+		'onmessage.lua',
+		'configure.lua',
+		'all.lua',
+		'admin.lua',
 		'banhammer.lua',
 		'users.lua',
 		'help.lua',
@@ -26,36 +92,38 @@ return {
 		'service.lua',
 		'links.lua',
 		'warn.lua',
-		'extra.lua',
 		'setlang.lua',
 		'floodmanager.lua',
 		'mediasettings.lua',
 		'private.lua',
-		'admin.lua',
 		'test.lua',
 		'faq.lua',
 		'caracola.lua',
 		'comprimirlink.lua',
 		'sendfiles.lua',
 		'killer.lua',
-		'beta.lua',
-	    'say.lua',
-		'italic.lua',
+		'say.lua',
 		'contact.lua',
 		'talk.lua',
 		'error.lua',
---		'saludador.lua',
+		'saludador.lua',
 		'sera.lua',
 		'isbanned.lua',
-		'canal.lua',
-		'spam.lua',
-		'antispam.lua',
---		'gbanner.lua',
+		'publi.lua',
+		'gbanner.lua',
 		'gban.lua',
-		'antibots.lua',
 		'antigroserias.lua',
-		'antigroserias2.lua',
-		'inline.lua'
+		'antispam.lua',
+		'plugins.lua',
+		'plugin2.lua',
+		'inline.lua',
+		"codes.lua",
+		'extra.lua'
+	},
+]]		
+	multipurpose_plugins = {
+		'commit.lua',
+		'eightball.lua'
 	},
 	available_languages = {
 		'es',
@@ -122,7 +190,8 @@ return {
 			['voice'] = 'allowed',
 			['contact'] = 'allowed',
 			['file'] = 'allowed',
-			['link'] = 'allowed'
+			['link'] = 'allowed',
+			['TGlink'] = 'allowed'
 		},
 	},
 	chat_custom_texts = {'rules', 'about', 'extra'},

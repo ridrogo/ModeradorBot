@@ -98,7 +98,6 @@ end
         if msg.from.username then name = name..' (@'..msg.from.username..')' end
         local media = msg.text:gsub('###', '')
         if msg.url then media = 'link' end
---        if then media = 'spam' end
         local hash = 'chat:'..msg.chat.id..':media'
         local status = db:hget(hash, media)
         local out

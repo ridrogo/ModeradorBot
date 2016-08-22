@@ -1,33 +1,3 @@
---local function tell(msg, ln)
---	if msg.reply then
---		msg = msg.reply
---	end
-	
---	local text = ''
---	text = text..make_text(lang[ln].tell.first_name, msg.from.first_name:mEscape())
---	
---	--check if the user has a last name
---	if msg.from.last_name then
---		text = text..make_text(lang[ln].tell.last_name, msg.from.last_name:mEscape())
---	end
---	
---	--check if the user has a username
---	if msg.from.username then
---		text = text..'*Username*: @'..msg.from.username:mEscape()..'\n'
---	end
---	
---	--add the id
---	text = text..'*ID*: '..msg.from.id..'\n'
---	
---	--if in a group, build group info
---	if msg.chat.type == 'group' or msg.chat.type == 'supergroup' then
---		text = text..make_text(lang[ln].tell.group_name, msg.chat.title:mEscape())
---		text = text..make_text(lang[ln].tell.group_id, msg.chat.id)
---		return text
---	else
---		return text
---	end
---end
 local function do_keybaord_credits()
 	local keyboard = {}
     keyboard.inline_keyboard = {
@@ -183,7 +153,7 @@ local action = function(msg, blocks, ln)
 		 	end
 	 	end
  end
-if blocks[1] == 'tell' then
+	if blocks[1] == 'tell' then
 --   if not(msg.chat.type == 'private') and not is_mod(msg) then return end
    local id
    if msg.reply then
@@ -231,45 +201,6 @@ if msg.chat.title then
  		end
  		api.sendReply(msg, '`'..id..'`', true)
  	end
--- 	if blocks[1] == 'tell' then
--- 		local id
--- 		local title
--- 		if msg.reply then
--- 			name = msg.reply.from.first_name
--- 			username = msg.reply.from.username
--- 			id = msg.reply.from.id
--- 			id2 = msg.chat.id
--- 			title = msg.chat.title
---	if msg.reply.from.username then
---		username = msg.reply.from.username:mEscape()
---	else
---		username = '(sin usuario)'
---	end
---	if msg.chat.title then
---		title = msg.chat.title:mEscape()
---	else
---		title = 'Group Butler Esp'
---	end
--- 		else
--- 			name = msg.from.first_name
--- 			username = msg.from.username
---
---			id = msg.from.id
---			id2 = msg.chat.id
---			title = msg.chat.title
---		if msg.from.username then
---		username = msg.from.username:mEscape()
---	else
---		username = '(sin usuario)'
---	end
---	if msg.chat.title then
---		title = msg.chat.title:mEscape()
---	else
---		title = 'Group Butler Esp'
---	end
--- 		end
--- 		api.sendReply(msg, '\n*Nombre: *'..name..'\n*Usuario: *@'..username..'\n*ID de usuario: *'..id..'\n*Nombre del Grupo: *'..title..'\n*ID de Grupo: *'..id2..'\n', true)
--- 	end
 	if blocks[1] == 'settings' then
         
         if msg.chat.type == 'private' then return end
@@ -279,7 +210,7 @@ if msg.chat.title then
     end
     if blocks[1] == 'welcome' then
         
-        if msg.chat.type == 'private' or not is_mod(msg) then return end
+--        if msg.chat.type == 'private' or not is_mod(msg) then return end
         
         local input = blocks[2]
         
@@ -531,12 +462,12 @@ return {
 		'^/(adminlist)$',
 		'^/(status) (@[%w_]+)$',
 		'^/(status) (%d+)$',
-		'^/(settings)$',
+--		'^/(settings)$',
 		'^/(export)(ban)$',
 		'^/(export)(save)$',
 		'^/(importban)$',
 		'^/(group)$',
-		'^/(welcome) (.*)$',
+--		'^/(welcome) (.*)$',
 		'^/(tell)$',	
 		'^/(user)$',
 		'^/(user) (@[%w_]+)$',
