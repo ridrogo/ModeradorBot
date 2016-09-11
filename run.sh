@@ -41,7 +41,7 @@ if [ "$1" = "config" ]; then
     sudo rm -f config.lua
     wget https://raw.githubusercontent.com/ridrogo/ModeradorBot/master/config.lua
     clear
-    perl -pi -e "s[readapikey][$apikey]g" config.lua
+    perl -pi -e "s[readapikey][$apikey]g" data/key
     perl -pi -e "s[readowner][$id]g" config.lua
     perl -pi -e "s[readadmin1][$id1]g" config.lua
     perl -pi -e "s[readadmin2][$id2]g" config.lua
