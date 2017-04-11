@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p "Do you want me to install Group Butler Bot? (Y/N):"
+read -p "Do you want me to install Moderador Bot? (Y/N):"
 
 if [ "$REPLY" != "Y" ]; then
     echo "Exiting..."
@@ -18,10 +18,7 @@ else
     sudo luarocks install serpent
     sudo luarocks install dkjson
     sudo luarocks install Lua-cURL
-    
-    echo -e "\e[1;36mFetching latest Group Butler source code\e[0m"
-    git clone https://github.com/RememberTheAir/GroupButler.git
-    
-    echo -e "\e[1;32mGroup Butler successfully installed! Change values in config file and run ./launch.sh\e[0m"
+       
+    echo -e "\e[1;32mModerador Bot successfully installed! Change values in config file and run ./launch.sh\e[0m"
     echo " "
 fi
