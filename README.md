@@ -20,7 +20,40 @@ cd ModeradorBot && chmod +x launch.sh
 Instalar ModeradorBot Beta: 
 
 ```bash
-./install.sh
+# Tested on Ubuntu 16.04
+
+$ wget https://raw.githubusercontent.com/ridrogo/ModeradorBot/beta/install.sh
+$ bash install.sh
+```
+or
+
+```bash
+# Tested on Ubuntu 14.04, 15.04 and 16.04, Debian 7, Linux Mint 17.2
+
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install libreadline-dev libssl-dev lua5.2 liblua5.2-dev git make unzip redis-server curl libcurl4-gnutls-dev
+
+# We are going now to install LuaRocks and the required Lua modules
+
+$ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
+$ tar zxpf luarocks-2.2.2.tar.gz
+$ cd luarocks-2.2.2
+$ ./configure; sudo make bootstrap
+$ sudo luarocks install luasec
+$ sudo luarocks install luasocket
+$ sudo luarocks install redis-lua
+$ sudo luarocks install lua-term
+$ sudo luarocks install serpent
+$ sudo luarocks install dkjson
+$ sudo luarocks install Lua-cURL
+$ cd ..
+
+# Clone the repository and give the launch script permissions to be executed
+# If you want to clone the beta branch, use git clone with the [-b beta] option
+
+$ git clone clone https://github.com/ridrogo/ModeradorBot.git
+$ cd ModeradorBot && chmod +x launch.sh
 ```
 
 Opciones de launch.sh (en TMUX):
