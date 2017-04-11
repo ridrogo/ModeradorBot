@@ -17,29 +17,29 @@ git clone https://github.com/ridrogo/ModeradorBot.git
 # Mover a directorio y cambiar permisos de arranque
 cd ModeradorBot && chmod +x launch.sh
 ```
-Instalar ModeradorBot: 
+Instalar ModeradorBot Beta: 
 
 ```bash
-./launch.sh install
+./install.sh
 ```
 
 Opciones de launch.sh (en TMUX):
 
 ```bash
 # Iniciar una sesión tmux
-./run.sh
+./launch.sh
 
 # Detener la sesiones (script de lectura de gbans, y script del bot. Tmux)
-./run.sh kill
+./launch.sh kill
 
 # Attach del bot (regresar a la sesión del bot. Tmux)
-./run.sh attach
+./launch.sh attach
 
 # Attach de los gbans (regresar a la sesión de los gbans. Tmux)
-./run.sh attach-gbans
+./launch.sh attach-gbans
 
 # Configurar y/o crear de nuevo el config.lua
-./run.sh config
+./launch.sh config
 
 ```
 
