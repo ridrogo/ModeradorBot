@@ -385,6 +385,15 @@ local function handle_inline_keyboards_cb(msg)
 	return on_msg_receive(msg)
 end
 
+local function handle_inline_query(msg) --responde a peticiones inlines
+        msg.inline = true
+		msg.chat = {id = msg.id, type = 'inline', title = 'inline'}
+		msg.date = os.time()
+		msg.text = '###inline:'..msg.query
+		msg.inline_id = msg.id
+    return on_msg_receive(msg)
+end
+
 ---------WHEN THE BOT IS STARTED FROM THE TERMINAL, THIS IS THE FIRST FUNCTION HE FOUNDS
 
 bot_init() -- Actually start the script. Run the bot_init function.
@@ -399,16 +408,14 @@ repeat -- reemplazado el while loop por repeat, en test múltiples parece ofrece
 --        vardump(res)
         clocktime_last_update = os.clock()
         real_time = os.time()
-        if not res.result then -- evita un boleano al no resolver correctamente la tabla msg
-            resultado = nil
+        if not res.result or res.result == false then -- evita un boleano al no resolver correctamente la tabla msg
+            print('No resuelve mensajes de la tabla msg')
         else
-            resultado = res.result 
-        end
-        for i=1, #resultado do 
-            last_update = resultado[i].update_id
+        for i=1, #res.result do 
+            last_update = res.result[i].update_id
             current_m = current_m + 1
             local msg
-            msg = resultado[i]
+            msg = res.result[i]
             if msg.inline_query then -- mensajes inline
                 handle_inline_query(msg.inline_query)
             end
@@ -422,7 +429,7 @@ repeat -- reemplazado el while loop por repeat, en test múltiples parece ofrece
                 handle_inline_keyboards_cb(msg.callback_query)
             end
             if msg.message then
-            if not msg.message.text then --evita un error boleano al no encontrar un msg.text en tabla msg 
+            if not msg.message.text then --evita un error nulo al no encontrar un msg.text en tabla msg 
                 trigger = nil
             else
                 trigger = msg.message.text:match('^[/!#]([^%s]+)$')
@@ -479,6 +486,7 @@ repeat -- reemplazado el while loop por repeat, en test múltiples parece ofrece
       end
 	  sis._exit(0)
 	end        
+end
 end
 until false
 
