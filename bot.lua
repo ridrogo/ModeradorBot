@@ -1,3 +1,4 @@
+sis = require('posix')
 HTTP = require('socket.http')
 HTTPS = require('ssl.https')
 URL = require('socket.url')
@@ -388,52 +389,97 @@ end
 
 bot_init() -- Actually start the script. Run the bot_init function.
 
-while is_started do -- Start a loop while the bot should be running.
-	local res = api.getUpdates(last_update+1) -- Get the latest updates!
-	if res then
-		--vardump(res)
-		for i,msg in ipairs(res.result) do -- Go through every new message.
-			last_update = msg.update_id
-			current_m = current_m + 1
-			if msg.message  or msg.callback_query --[[or msg.edited_message]]then
-				--[[if msg.edited_message then
-					msg.message = msg.edited_message
-					msg.edited_message = nil
-				end]]
-				if msg.callback_query then
-					handle_inline_keyboards_cb(msg.callback_query)
-				elseif msg.message.migrate_to_chat_id then
-					to_supergroup(msg.message)
-				elseif msg.message.new_chat_member or msg.message.left_chat_member or msg.message.group_chat_created then
-					service_to_message(msg.message)
-				elseif msg.message.photo or msg.message.video or msg.message.document or msg.message.voice or msg.message.audio or msg.message.sticker or msg.message.entities then
-					media_to_msg(msg.message)
-				elseif msg.message.forward_from then
-					forward_to_msg(msg.message)
-				elseif msg.message.reply_to_message then
-					rethink_reply(msg.message)
-				else
-					on_msg_receive(msg.message)
-				end
-			end
-		end
-	else
-		print('Connection error')
-	end
-	if last_cron ~= os.date('%M') then -- Run cron jobs every minute.
-		last_cron = os.date('%M')
-		last_m = current_m
-		current_m = 0
-		for i,v in ipairs(plugins) do
-			if v.cron then -- Call each plugin's cron function, if it has one.
-				local res, err = pcall(function() v.cron() end)
-				if not res then
-          			api.sendLog('An #error occurred.\n'..err)
+--while is_started do -- Start a loop while the bot should be running.
+repeat -- reemplazado el while loop por repeat, en test múltiples parece ofrecer mejor respuesta y tolerancia a errores.
+    local res = api.getUpdates(last_update+1) -- Get the latest updates!
+    if not res or res.ok == false then
+        print('Connection error')     
+        bot_init(true)
+    else
+--        vardump(res)
+        clocktime_last_update = os.clock()
+        real_time = os.time()
+        if not res.result then -- evita un boleano al no resolver correctamente la tabla msg
+            resultado = nil
+        else
+            resultado = res.result 
+        end
+        for i=1, #resultado do 
+            last_update = resultado[i].update_id
+            current_m = current_m + 1
+            local msg
+            msg = resultado[i]
+            if msg.inline_query then -- mensajes inline
+                handle_inline_query(msg.inline_query)
+            end
+            if msg.edited_message then -- mensajes editados
+			    msg.message = msg.edited_message 
+				msg.message.original_date = msg.edited_message.date
+				msg.message.date = msg.edited_message.edit_date
+--				msg.message.entities = nil
+		    end
+		    if msg.callback_query then
+                handle_inline_keyboards_cb(msg.callback_query)
+            end
+            if msg.message then
+            if not msg.message.text then --evita un error boleano al no encontrar un msg.text en tabla msg 
+                trigger = nil
+            else
+                trigger = msg.message.text:match('^[/!#]([^%s]+)$')
+            end
+            if trigger and (msg.message.date <= os.time() - 5) then -- si es un comando del bot y el tiempo de la api es distinto al del server por mucho, no procesará el mensaje (app son 5 segundos) 
+--                if not is_dev(msg.message) then  -- bloqueara a esos usuarios flooders para el uso del bot
+--                    db:sadd('bot:blocked', msg.message.from.id)
+--                end
+            print('Flood de comandos, no se procesarán los mensajes')
+--            elseif msg.message.date <= os.time(os.date("!*t")) - 7 then -- si los mensjaes son muy antiguos no los procesará el bot
+--            print('Tiempo de mensajes demasiado antiguo, no se procesaran los mensajes')
+        else
+--     		if msg.channel_post then -- si el mensaje procesado viene de un canal
+--    		    msg.channel_post.channel_post = true
+--			elseif msg.edited_channel_post then
+--				msg.edited_channel_post.edited_channel_post = true
+--				msg.edited_channel_post.original_date = msg.edited_channel_post.date
+--				msg.edited_channel_post.date = msg.edited_channel_post.edit_date
+--			end
+                if msg.message.migrate_to_chat_id then
+                    to_supergroup(msg.message)
+                elseif msg.message.new_chat_member or msg.message.left_chat_member or msg.message.group_chat_created or msg.message.new_chat_title or msg.message.pinned_message then
+                    service_to_message(msg.message)
+                elseif msg.message.photo or msg.message.video or msg.message.document or msg.message.voice or msg.message.audio or msg.message.sticker or msg.message.game or msg.message.entities or msg.message.caption then
+                    media_to_msg(msg.message)
+                elseif msg.message.forward_from or msg.message.forward_from_chat then
+                    forward_to_msg(msg.message)
+                elseif msg.message.reply_to_message then
+                    rethink_reply(msg.message)
+                else
+                    on_msg_receive(msg.message)
+                end
+               end
+            end
+        end
+  end
+    if last_cron ~= os.date('%M') then -- Run cron jobs every hour.
+        last_cron = os.date('%M')
+        last_m = current_m
+        current_m = 0
+     local pid = sis.fork()
+	 if (pid<0) then
+	 	print('error en fork')
+	 	api.sendAdmin('Error en fork funcion clean')
+	 elseif (pid==0) then 
+	    for i=1, #plugins do
+			if plugins[i].cron then -- Call each plugin's cron function, if it has one.
+				local res2, err = pcall(plugins[i].cron)
+				if not res2 then
+					api.sendLog('An #error occurred (cron).\n'..err)
 					return
-				end
-			end
-		end
-	end
+                end
+            end
+      end
+	  sis._exit(0)
+	end        
 end
+until false
 
 print('Halted.')
